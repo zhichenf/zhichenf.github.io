@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Pages on 奕晨&#39;s blog</title>
+        <link>https://zhichenf.github.io/page/</link>
+        <description>Recent content in Pages on 奕晨&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>YC奕晨</copyright>
+        <lastBuildDate>Sun, 05 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>介绍</title>
+        <link>https://zhichenf.github.io/%E4%BB%8B%E7%BB%8D/</link>
+        <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhichenf.github.io/%E4%BB%8B%E7%BB%8D/</guid>
+        <description>&lt;h3 id=&#34;欢迎来到我的学习博客&#34;&gt;欢迎来到我的学习博客！
+&lt;/h3&gt;&lt;p&gt;这个博客是我个人学习旅程的记录，分享我在技术、编程、软件开发以及个人成长方面的探索和心得。作为一名持续学习的爱好者，我希望通过这个平台，不仅能与大家分享我所学的知识，还能与志同道合的人一起交流和进步。&lt;/p&gt;
+&lt;h4 id=&#34;博客内容&#34;&gt;博客内容：
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;技术与编程&lt;/strong&gt;：我会分享自己在学习和实践过程中对编程语言、开发工具、框架的理解和经验。无论是 C++、Python，还是其他常用技术，我都会尽力提供清晰且易于理解的教程和示例。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;项目实战&lt;/strong&gt;：记录我参与的各种项目，分享在开发过程中的问题、解决方法和思考。通过实际项目，我希望自己能不断提高，也希望给其他学习者带来帮助。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;学习心得&lt;/strong&gt;：作为一个终身学习者，我会定期分享一些自己的学习方法和技巧，探讨如何高效学习、如何克服学习中的障碍，以及如何在职业生涯中不断成长。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;个人成长与职业规划&lt;/strong&gt;：除了技术层面的内容，我也会写一些关于职业发展的文章，探讨如何提高自己的软技能、如何进行职业规划、如何平衡工作与生活等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;为什么写博客&#34;&gt;为什么写博客？
+&lt;/h4&gt;&lt;p&gt;写博客是我记录自己学习进度和思考的方式。每当我深入了解一个技术，或者在某个项目中克服难题时，都会把这些经验整理出来，与更多的人分享。我相信分享和交流能让学习更加有趣和有效，也能帮助自己不断完善和提升。&lt;/p&gt;
+&lt;h4 id=&#34;我的学习之路&#34;&gt;我的学习之路：
+&lt;/h4&gt;&lt;p&gt;作为一名从零开始进入编程世界的学习者，我知道每一步进展都充满挑战，但也是成长的机会。在这条路上，我从不追求速成，而是注重扎实的基础与深刻的理解。希望通过这个博客的内容，能够激励你也坚持自己的学习之路，不断突破自我，享受成长的过程。&lt;/p&gt;
+&lt;h4 id=&#34;与我一起学习&#34;&gt;与我一起学习：
+&lt;/h4&gt;&lt;p&gt;如果你和我一样也是学习者，或者对某个话题感兴趣，欢迎在评论区留言、分享你的看法，或者直接联系我。我相信通过讨论和交流，我们能一起进步。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>文档</title>
+        <link>https://zhichenf.github.io/archives/</link>
+        <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhichenf.github.io/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>友情链接</title>
+        <link>https://zhichenf.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhichenf.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
+        <description>&lt;p&gt;要使用此功能，请在前端添加 &lt;code&gt;links&lt;/code&gt; 部分。&lt;/p&gt;
+&lt;p&gt;此页面的前端代码如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yaml复制代码links:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  - title: GitHub
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    description: GitHub 是全球最大的开源软件开发平台。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    website: https://github.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  - title: TypeScript
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    description: TypeScript 是 JavaScript 的一个超集，带有类型系统，并编译成普通的 JavaScript。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    website: https://www.typescriptlang.org
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    image: ts-logo-128.jpg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;image&lt;/code&gt; 字段可以接受本地和外部图像。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>搜索</title>
+        <link>https://zhichenf.github.io/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhichenf.github.io/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
