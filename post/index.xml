@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>奕晨&#39;s blog</title>
-        <link>https://zhichenf.github.io/</link>
-        <description>Recent content on 奕晨&#39;s blog</description>
+        <title>Posts on 奕晨&#39;s blog</title>
+        <link>https://zhichenf.github.io/post/</link>
+        <description>Recent content in Posts on 奕晨&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>YC奕晨</copyright>
-        <lastBuildDate>Mon, 06 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 06 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>C&#43;&#43;11线程池</title>
         <link>https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
         <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
@@ -597,53 +597,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
-        </item>
-        <item>
-        <title>介绍</title>
-        <link>https://zhichenf.github.io/%E4%BB%8B%E7%BB%8D/</link>
-        <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://zhichenf.github.io/%E4%BB%8B%E7%BB%8D/</guid>
-        <description>&lt;h3 id=&#34;欢迎来到我的学习博客&#34;&gt;欢迎来到我的学习博客！
-&lt;/h3&gt;&lt;p&gt;这个博客是我个人学习旅程的记录，分享我在技术、编程、软件开发以及个人成长方面的探索和心得。作为一名持续学习的爱好者，我希望通过这个平台，不仅能与大家分享我所学的知识，还能与志同道合的人一起交流和进步。&lt;/p&gt;
-&lt;h4 id=&#34;博客内容&#34;&gt;博客内容：
-&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;技术与编程&lt;/strong&gt;：我会分享自己在学习和实践过程中对编程语言、开发工具、框架的理解和经验。无论是 C++、Python，还是其他常用技术，我都会尽力提供清晰且易于理解的教程和示例。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;项目实战&lt;/strong&gt;：记录我参与的各种项目，分享在开发过程中的问题、解决方法和思考。通过实际项目，我希望自己能不断提高，也希望给其他学习者带来帮助。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;学习心得&lt;/strong&gt;：作为一个终身学习者，我会定期分享一些自己的学习方法和技巧，探讨如何高效学习、如何克服学习中的障碍，以及如何在职业生涯中不断成长。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;个人成长与职业规划&lt;/strong&gt;：除了技术层面的内容，我也会写一些关于职业发展的文章，探讨如何提高自己的软技能、如何进行职业规划、如何平衡工作与生活等。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;为什么写博客&#34;&gt;为什么写博客？
-&lt;/h4&gt;&lt;p&gt;写博客是我记录自己学习进度和思考的方式。每当我深入了解一个技术，或者在某个项目中克服难题时，都会把这些经验整理出来，与更多的人分享。我相信分享和交流能让学习更加有趣和有效，也能帮助自己不断完善和提升。&lt;/p&gt;
-&lt;h4 id=&#34;我的学习之路&#34;&gt;我的学习之路：
-&lt;/h4&gt;&lt;p&gt;作为一名从零开始进入编程世界的学习者，我知道每一步进展都充满挑战，但也是成长的机会。在这条路上，我从不追求速成，而是注重扎实的基础与深刻的理解。希望通过这个博客的内容，能够激励你也坚持自己的学习之路，不断突破自我，享受成长的过程。&lt;/p&gt;
-&lt;h4 id=&#34;与我一起学习&#34;&gt;与我一起学习：
-&lt;/h4&gt;&lt;p&gt;如果你和我一样也是学习者，或者对某个话题感兴趣，欢迎在评论区留言、分享你的看法，或者直接联系我。我相信通过讨论和交流，我们能一起进步。&lt;/p&gt;
-</description>
-        </item>
-        <item>
-        <title>归档</title>
-        <link>https://zhichenf.github.io/archives/</link>
-        <pubDate>Sun, 05 Jan 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://zhichenf.github.io/archives/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>友情链接</title>
-        <link>https://zhichenf.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://zhichenf.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>搜索</title>
-        <link>https://zhichenf.github.io/search/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://zhichenf.github.io/search/</guid>
-        <description></description>
         </item>
         
     </channel>
