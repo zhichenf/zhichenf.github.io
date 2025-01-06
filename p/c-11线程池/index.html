@@ -262,18 +262,26 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#线程池的定义">线程池的定义</a></li>
-    <li><a href="#为什么需要线程池">为什么需要线程池？</a></li>
-    <li><a href="#线程池的工作原理">线程池的工作原理</a></li>
-    <li><a href="#线程池的主要组件">线程池的主要组件</a></li>
-    <li><a href="#线程池的优点">线程池的优点</a></li>
-    <li><a href="#线程池的使用场景">线程池的使用场景</a></li>
-    <li><a href="#示例线程池的任务调度流程">示例：线程池的任务调度流程</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#task_queue类的设计">task_queue类的设计</a></li>
-    <li><a href="#thread_pool类的设计">thread_pool类的设计</a></li>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#线程池简介">线程池简介</a>
+      <ol>
+        <li><a href="#线程池的定义">线程池的定义</a></li>
+        <li><a href="#为什么需要线程池">为什么需要线程池？</a></li>
+        <li><a href="#线程池的工作原理">线程池的工作原理</a></li>
+        <li><a href="#线程池的主要组件">线程池的主要组件</a></li>
+        <li><a href="#线程池的优点">线程池的优点</a></li>
+        <li><a href="#线程池的使用场景">线程池的使用场景</a></li>
+        <li><a href="#示例线程池的任务调度流程">示例：线程池的任务调度流程</a></li>
+      </ol>
+    </li>
+    <li><a href="#基于c11的线程池的实现">基于c++11的线程池的实现</a>
+      <ol>
+        <li><a href="#task_queue类的设计">task_queue类的设计</a></li>
+        <li><a href="#thread_pool类的设计">thread_pool类的设计</a></li>
+      </ol>
+    </li>
+    <li><a href="#设计上的细节">设计上的细节</a></li>
+    <li><a href="#使用线程池">使用线程池</a></li>
   </ol>
 </nav>
         </div>
@@ -355,16 +363,16 @@
     <section class="article-content">
     
     
-    <h1 id="引言">引言
-</h1><blockquote>
+    <h2 id="引言">引言
+</h2><blockquote>
 <p>在C++11之前，标准库并不提供线程相关的支持（如<code>std::thread</code>、<code>std::mutex</code>等），因此在C++11之前&gt;创建线程池需要依赖于操作系统的线程库或第三方库，如 <strong>POSIX线程（pthread）</strong> 或 <strong>Boost.Thread</strong>。而在c++11之后，我们可以使用c++的标准库来实现线程池，从而写出跨平台的线程池。</p>
 </blockquote>
-<h1 id="线程池简介">线程池简介
-</h1><h2 id="线程池的定义">线程池的定义
-</h2><p>线程池是一种<strong>线程管理模式</strong>，用于<strong>复用</strong>一组固定数量的线程来执行任务，而不是为每个任务都单独创建和销毁线程。通过线程池，任务被放入任务队列中，由空闲的线程依次取出并执行，从而提升性能和资源利用率。</p>
+<h2 id="线程池简介">线程池简介
+</h2><h3 id="线程池的定义">线程池的定义
+</h3><p>线程池是一种<strong>线程管理模式</strong>，用于<strong>复用</strong>一组固定数量的线程来执行任务，而不是为每个任务都单独创建和销毁线程。通过线程池，任务被放入任务队列中，由空闲的线程依次取出并执行，从而提升性能和资源利用率。</p>
 <hr>
-<h2 id="为什么需要线程池">为什么需要线程池？
-</h2><ol>
+<h3 id="为什么需要线程池">为什么需要线程池？
+</h3><ol>
 <li><strong>线程创建和销毁的开销</strong>：
 <ul>
 <li>每次创建和销毁线程都需要占用系统资源。</li>
@@ -390,8 +398,8 @@
 </li>
 </ol>
 <hr>
-<h2 id="线程池的工作原理">线程池的工作原理
-</h2><ol>
+<h3 id="线程池的工作原理">线程池的工作原理
+</h3><ol>
 <li><strong>初始化线程池</strong>：
 <ul>
 <li>创建一定数量的线程，并让它们处于等待（阻塞）状态。</li>
@@ -415,8 +423,8 @@
 </li>
 </ol>
 <hr>
-<h2 id="线程池的主要组件">线程池的主要组件
-</h2><ol>
+<h3 id="线程池的主要组件">线程池的主要组件
+</h3><ol>
 <li><strong>任务队列</strong>：
 <ul>
 <li>存放待执行的任务，可以是FIFO队列或优先级队列。</li>
@@ -441,8 +449,8 @@
 </li>
 </ol>
 <hr>
-<h2 id="线程池的优点">线程池的优点
-</h2><ol>
+<h3 id="线程池的优点">线程池的优点
+</h3><ol>
 <li><strong>减少资源消耗</strong>：
 <ul>
 <li>复用线程，避免频繁创建和销毁线程。</li>
@@ -467,8 +475,8 @@
 </li>
 </ol>
 <hr>
-<h2 id="线程池的使用场景">线程池的使用场景
-</h2><ol>
+<h3 id="线程池的使用场景">线程池的使用场景
+</h3><ol>
 <li><strong>高并发服务器</strong>：
 <ul>
 <li>如Web服务器、数据库服务器等，需要处理大量短时间的任务。</li>
@@ -491,16 +499,16 @@
 </li>
 </ol>
 <hr>
-<h2 id="示例线程池的任务调度流程">示例：线程池的任务调度流程
-</h2><ol>
+<h3 id="示例线程池的任务调度流程">示例：线程池的任务调度流程
+</h3><ol>
 <li>应用程序提交任务。</li>
 <li>任务被放入任务队列。</li>
 <li>线程池中一个空闲线程取出任务并执行。</li>
 <li>执行完成后，线程返回线程池，等待下一任务。</li>
 </ol>
-<h1 id="基于c11的线程池的实现">基于c++11的线程池的实现
-</h1><h2 id="task_queue类的设计">task_queue类的设计
-</h2><ul>
+<h2 id="基于c11的线程池的实现">基于c++11的线程池的实现
+</h2><h3 id="task_queue类的设计">task_queue类的设计
+</h3><ul>
 <li>任务队列使用生产者消费者模型，将任务当作物品，每当将任务放到任务队列的时候，就会通知线程拿取任务，并让线程执行任务。</li>
 <li>task_queue的接口如下</li>
 </ul>
@@ -679,8 +687,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="thread_pool类的设计">thread_pool类的设计
-</h2><ul>
+</div><h3 id="thread_pool类的设计">thread_pool类的设计
+</h3><ul>
 <li>thread_pool用于创建多个线程，并可以添加和获取任务，让线程去执行任务。其中有一个DoTask函数，当作线程函数，让线程执行任务。DoTask在执行任务前应当获取任务，如果没有任务，线程就会阻塞等待任务。当任务到来时，通过条件变量唤醒线程，并获取到任务task(一个可调用对象)，这时候就可以直接调用task()去执行任务。</li>
 <li>thread_pool的接口如下</li>
 </ul>
@@ -867,13 +875,13 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="设计上的细节">设计上的细节
-</h1><ul>
+</div><h2 id="设计上的细节">设计上的细节
+</h2><ul>
 <li>在终止线程池之前，要确保任务队列中的任务被全部取出。</li>
 <li>当线程池终止的时候，会将退出标志设置为true，并且会唤醒所有睡着的线程，并告知退出，此时线程将不再会进入循环。</li>
 </ul>
-<h1 id="使用线程池">使用线程池
-</h1><ul>
+<h2 id="使用线程池">使用线程池
+</h2><ul>
 <li>定义MyTask类，使用process()成员函数作为任务的具体执行过程，任务所需要的变量可以用MyTask的成员变量来表示。注意任务应当是void()类型的可调用对象，所以thread_pool添加任务的时候，需要绑定一下this指针。</li>
 </ul>
 <div class="highlight"><div class="chroma">
