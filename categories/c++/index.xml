@@ -401,14 +401,18 @@
 &lt;li&gt;在这个简单的CMake项目中，有如下的项目结构&lt;/li&gt;
 &lt;li&gt;整个项目只有一个CMakeLists.txt，所有的源文件和头文件都放在项目目录中，bin中存放的是最终的可执行程序。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index.assets/image-20250110220949324.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220949324.png&#34;
+	width=&#34;540&#34;
+	height=&#34;524&#34;
+	srcset=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220949324_hu16510108938056029749.png 480w, https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220949324_hu4247972801431675570.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image-20250110220949324&#34;
+		alt=&#34;简单项目目录结构&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;103&#34;
+		data-flex-basis=&#34;247px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -440,14 +444,18 @@
 &lt;li&gt;在这个份文件的CMake项目中，有如下的项目结构&lt;/li&gt;
 &lt;li&gt;整个项目只有一个CMakeLists.txt，src文件夹里面存放的是源文件，include文件夹中存放的是头文件，bin中存放的是最终的可执行程序。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index.assets/image-20250110220913038.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220913038.png&#34;
+	width=&#34;555&#34;
+	height=&#34;491&#34;
+	srcset=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220913038_hu13151870731104204147.png 480w, https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220913038_hu4209367956876495173.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image-20250110220913038&#34;
+		alt=&#34;分文件编写目录结构&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;113&#34;
+		data-flex-basis=&#34;271px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -491,14 +499,18 @@
 &lt;li&gt;在创建共享库的项目中，有如下目录结构&lt;/li&gt;
 &lt;li&gt;注意到bin中多出了libcommon.dll动态链接库文件。同时，main程序在项目目录下，其他.cpp文件存放在了src目录中，头文件存放在了include目录中。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index.assets/image-20250110221848629.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110221848629.png&#34;
+	width=&#34;631&#34;
+	height=&#34;660&#34;
+	srcset=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110221848629_hu67062621003732253.png 480w, https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110221848629_hu14702383058364711847.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image-20250110221848629&#34;
+		alt=&#34;使用共享库目录结构&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;95&#34;
+		data-flex-basis=&#34;229px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -591,14 +603,18 @@
 &lt;li&gt;项目有如下目录结构&lt;/li&gt;
 &lt;li&gt;项目文件夹下有一个CmakeLists文件；src文件夹里有一个CmakeLists文件，主程序和几个类的文件夹；同时src中每个类各自的文件夹都包含了CmakeLists，.cpp，.h三个文件&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index.assets/image-20250112222524977.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250112222524977.png&#34;
+	width=&#34;642&#34;
+	height=&#34;595&#34;
+	srcset=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250112222524977_hu13934352021667866640.png 480w, https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250112222524977_hu13620595558660073235.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;image-20250112222524977&#34;
+		alt=&#34;嵌套调用目录结构&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;107&#34;
+		data-flex-basis=&#34;258px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;ul&gt;
