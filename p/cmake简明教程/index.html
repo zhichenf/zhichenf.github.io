@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="使用简单的CMake搭建简单的项目">
+<title>CMake创建c&#43;&#43;项目简明教程</title>
+
+<link rel='canonical' href='https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.4309c0f292b97e55f11df1df486e6b2ad96b62932102017c0579c9921b356be8.css"><meta property='og:title' content="CMake创建c++项目简明教程">
+<meta property='og:description' content="使用简单的CMake搭建简单的项目">
+<meta property='og:url' content='https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/'>
+<meta property='og:site_name' content='奕晨&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-01-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-10T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="CMake创建c++项目简明教程">
+<meta name="twitter:description" content="使用简单的CMake搭建简单的项目">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/qyc_hu7218216420749986328.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">👻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">奕晨&#39;s blog</a></h1>
+            <h2 class="site-description">欢迎来到我的博客，在这里让我们一起体验编程的奥妙！</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1767346082?spm_id_from=333.1007.0.0'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z"></path> <path d="M8 3l2 3"></path> <path d="M16 3l-2 3"></path> <path d="M9 13v-2"></path> <path d="M15 11v2"></path> </svg> 
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/zhichenf'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E4%BB%8B%E7%BB%8D/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>介绍</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#cmake语法">CMake语法</a></li>
+    <li><a href="#简单的cmake项目">简单的CMake项目</a></li>
+    <li><a href="#分文件编写的的cmake项目">分文件编写的的CMake项目</a></li>
+    <li><a href="#共享库">共享库</a></li>
+    <li><a href="#cmakelists嵌套">CmakeLists嵌套</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c&#43;&#43;/" style="background-color: #2a9d8f; color: #fff;">
+                C&#43;&#43;
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/">CMake创建c&#43;&#43;项目简明教程</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            使用简单的CMake搭建简单的项目
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-01-10</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="引言">引言
+</h2><blockquote>
+<p>CMake 是一个跨平台的构建系统生成器，用于自动化构建、测试和打包软件项目的过程。CMake 通过一系列源代码文件和配置设置，生成平台特定的构建文件（例如 Makefile、Visual Studio 项目文件等）。</p>
+</blockquote>
+<h2 id="cmake语法">CMake语法
+</h2><ul>
+<li>依次使用以下命令生成项目(对于CmakeLists.txt)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cmake -B build  <span class="c1"># 创建build文件夹和相关文件</span>
+</span></span><span class="line"><span class="cl">cmake --build build  <span class="c1"># 生成项目</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>语法简介</p>
+<p><code>cmake -P *.cmake</code>命令来运行cmake文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 单行打印</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="s2">&#34;hello&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span>hello<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 多行打印</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="s2">&#34;first line
+</span></span></span><span class="line"><span class="cl"><span class="s2">second line&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">([[</span>first line
+</span></span><span class="line"><span class="cl">second line<span class="o">]])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打印cmake版本号，使用CMAKE_VERSION变量 ${}</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">CMAKE_VERSION</span><span class="si">}</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>set设置变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>Var1 <span class="s2">&#34;hello&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>Var2 world<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打印单行hello world</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">Var1</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">Var2</span><span class="si">}</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打印多行hello world</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">Var1</span><span class="si">}</span><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"></span><span class="si">${</span><span class="nv">Var2</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="s2">&#34;------------------------&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>VarLists a1 a2<span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">VarLists</span><span class="si">}</span><span class="o">)</span>    <span class="c1">#a1a2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打印环境变量</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="nv">$ENV</span><span class="o">{</span>PATH<span class="o">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建cmake项目的环境变量</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>ENV<span class="o">{</span>CXX<span class="o">}</span> <span class="s2">&#34;g++&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="nv">$ENV</span><span class="o">{</span>CXX<span class="o">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除刚刚创建的环境变量</span>
+</span></span><span class="line"><span class="cl">unset<span class="o">(</span>ENV<span class="o">{</span>CXX<span class="o">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>list</p>
+<ul>
+<li>list(操作方式 操作对象 可能有操作返回结果的变量)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">list<span class="o">(</span>APPEND port p1 p2 p3<span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">port</span><span class="si">}</span><span class="o">)</span>    <span class="c1"># p1p2p3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">list<span class="o">(</span>LENGTH port len<span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">len</span><span class="si">}</span><span class="o">)</span>     <span class="c1"># 3 (变量长度为3)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">list<span class="o">(</span>FIND port p2 index<span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">index</span><span class="si">}</span><span class="o">)</span>   <span class="c1"># 1 (p2在1的位置)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">list<span class="o">(</span>REMOVE_ITEM port p1<span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">port</span><span class="si">}</span><span class="o">)</span>    <span class="c1"># p2p3 (删除p1)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">list<span class="o">(</span>INSERT port <span class="m">1</span> p2.5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">port</span><span class="si">}</span><span class="o">)</span>    <span class="c1"># p2p2.5p3 (在1位置插入p2.5)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">list<span class="o">(</span>REVERSE port<span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">port</span><span class="si">}</span><span class="o">)</span>    <span class="c1"># p3p2.5p2 (进行反转)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">list<span class="o">(</span>SORT port<span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="si">${</span><span class="nv">port</span><span class="si">}</span><span class="o">)</span>    <span class="c1"># p2p2.5p3 (进行排序)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>流程控制</p>
+<ul>
+<li>if流程</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">set<span class="o">(</span>VAR1 TRUE<span class="o">)</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>VAR2 FALSE<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="o">(</span>VAR1<span class="o">)</span>    <span class="c1"># 简单判断</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span>TRUE<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span>FALSE<span class="o">)</span>
+</span></span><span class="line"><span class="cl">endif<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="o">(</span>NOT VAR1<span class="o">)</span> <span class="c1"># NOT不能是not，大小写敏感</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span>TRUE<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span>FALSE<span class="o">)</span>
+</span></span><span class="line"><span class="cl">endif<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="o">(</span>VAR1 AND VAR2<span class="o">)</span>   <span class="c1"># OR用法也是如此</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span>TRUE<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span>FALSE<span class="o">)</span>
+</span></span><span class="line"><span class="cl">endif<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="o">(</span><span class="m">1</span> LESS 2<span class="o">)</span>        <span class="c1"># 比较,其实还是字符串的比较</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;1 less 2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;error&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">endif<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="o">(</span><span class="m">2</span> GREATER 1<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;2 greater 1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">endif<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="o">(</span><span class="m">2</span> EQUAL <span class="s2">&#34;2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;2 equal \&#34;2\&#34;&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">endif<span class="o">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>for流程</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">foreach<span class="o">(</span>VAR RANGE 3<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="si">${</span><span class="nv">VAR</span><span class="si">}</span><span class="o">)</span> <span class="c1"># 0 1 2 3 (跟一般编程语言区别很大)</span>
+</span></span><span class="line"><span class="cl">endforeach<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>MY_LISTS <span class="m">1</span> <span class="m">2</span> 3<span class="o">)</span>
+</span></span><span class="line"><span class="cl">foreach<span class="o">(</span>VAR IN LISTS MY_LISTS ITEMS <span class="m">4</span> f<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="si">${</span><span class="nv">VAR</span><span class="si">}</span><span class="o">)</span> <span class="c1"># 1 2 3 4 f</span>
+</span></span><span class="line"><span class="cl">endforeach<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="s2">&#34;----------------------&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>L1 one two three<span class="o">)</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>L2 <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> 4<span class="o">)</span>
+</span></span><span class="line"><span class="cl">foreach<span class="o">(</span>num IN ZIP_LISTS L1 L2<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;word = </span><span class="si">${</span><span class="nv">num_0</span><span class="si">}</span><span class="s2">, num = </span><span class="si">${</span><span class="nv">num_1</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">endforeach<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># word = one, num = 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># word = two, num = 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># word = three, num = 3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># word = , num = 4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​</p>
+</li>
+<li>
+<p>函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="k">function</span><span class="o">(</span>MyFunc FirstArg<span class="o">)</span> <span class="c1"># 函数名MyFunc</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;MyFunc Name: </span><span class="si">${</span><span class="nv">CMAKE_CURRENT_FUNCTION</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;FIRST </span><span class="si">${</span><span class="nv">FirstArg</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>    <span class="c1"># 使用形参列表使用参数</span>
+</span></span><span class="line"><span class="cl">    set<span class="o">(</span>FirstArg <span class="s2">&#34;New value&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;FirstArg again: </span><span class="si">${</span><span class="nv">FirstArg</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;ARGV0 </span><span class="si">${</span><span class="nv">ARGV0</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>       <span class="c1"># 不使用形参列表使用参数</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;ARGV1 </span><span class="si">${</span><span class="nv">ARGV1</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;ARGV2 </span><span class="si">${</span><span class="nv">ARGV2</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">endfunction<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>FirstArg <span class="s2">&#34;first value&#34;</span><span class="o">)</span>         
+</span></span><span class="line"><span class="cl">MyFunc<span class="o">(</span><span class="si">${</span><span class="nv">FirstArg</span><span class="si">}</span> <span class="s2">&#34;value&#34;</span><span class="o">)</span>         <span class="c1"># 可以传入和新参列表不一样数目的实参</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="s2">&#34;FirstArg </span><span class="si">${</span><span class="nv">FirstArg</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>     <span class="c1"># 函数内部修改不会改变函数外面</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MyFunc Name: MyFunc</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># FIRST first value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># FirstArg again: New value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ARGV0 first value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ARGV1 value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ARGV2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># FirstArg first value</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>宏</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">macro<span class="o">(</span>Test myVar<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    set<span class="o">(</span>myVar <span class="s2">&#34;new value&#34;</span><span class="o">)</span>  <span class="c1"># 新建的变量，不是上面的参数</span>
+</span></span><span class="line"><span class="cl">    message<span class="o">(</span><span class="s2">&#34;argument: </span><span class="si">${</span><span class="nv">myVar</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>   <span class="c1">#${myVar}会变为传入的myVar</span>
+</span></span><span class="line"><span class="cl">endmacro<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>myVar <span class="s2">&#34;First value&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="s2">&#34;myVar: </span><span class="si">${</span><span class="nv">myVar</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">Test<span class="o">(</span><span class="s2">&#34;value&#34;</span><span class="o">)</span>   <span class="c1"># 将宏代码复制到了这里</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span><span class="s2">&#34;myVar: </span><span class="si">${</span><span class="nv">myVar</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># myVar: First value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># argument: value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># myVar: new value</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="简单的cmake项目">简单的CMake项目
+</h2><ul>
+<li>在这个简单的CMake项目中，有如下的项目结构</li>
+<li>整个项目只有一个CMakeLists.txt，所有的源文件和头文件都放在项目目录中，bin中存放的是最终的可执行程序。</li>
+</ul>
+<p><img src="/index.assets/image-20250110220949324.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250110220949324"
+	
+	
+></p>
+<ul>
+<li>CMakeLists.txt中的代码如下</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cmake_minimum_required<span class="o">(</span>VERSION 3.29.0<span class="o">)</span>  <span class="c1"># 确定CMake版本</span>
+</span></span><span class="line"><span class="cl">project<span class="o">(</span>planning<span class="o">)</span>                       <span class="c1"># 项目名</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>CMAKE_CXX_STANDARD 17<span class="o">)</span>              <span class="c1"># 使用的语言和版本</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>EXECUTABLE_OUTPUT_PATH <span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/bin<span class="o">)</span>    <span class="c1"># 设定可执行文件的路径</span>
+</span></span><span class="line"><span class="cl">aux_source_directory<span class="o">(</span>. SRC_LISTS<span class="o">)</span>                        <span class="c1"># 添加当前目录所有源文件路径到SRC_LIST变量中</span>
+</span></span><span class="line"><span class="cl">add_executable<span class="o">(</span>planning_main <span class="si">${</span><span class="nv">SRC_LISTS</span><span class="si">}</span><span class="o">)</span>      <span class="c1"># 通过源文件创建目标可执行文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="分文件编写的的cmake项目">分文件编写的的CMake项目
+</h2><ul>
+<li>在这个份文件的CMake项目中，有如下的项目结构</li>
+<li>整个项目只有一个CMakeLists.txt，src文件夹里面存放的是源文件，include文件夹中存放的是头文件，bin中存放的是最终的可执行程序。</li>
+</ul>
+<p><img src="/index.assets/image-20250110220913038.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250110220913038"
+	
+	
+></p>
+<ul>
+<li>CMakeLists.txt中的代码如下</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cmake_minimum_required<span class="o">(</span>VERSION 3.20.0<span class="o">)</span> <span class="c1"># 确定CMake版本</span>
+</span></span><span class="line"><span class="cl">project<span class="o">(</span>my_hello<span class="o">)</span>                      <span class="c1"># 项目名</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>CMAKE_CXX_STANDARD 17<span class="o">)</span>             <span class="c1"># 使用的语言和版本</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">include_directories<span class="o">(</span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/include<span class="o">)</span>  <span class="c1"># 指定头文件搜索路径</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>EXECUTABLE_OUTPUT_PATH <span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/bin<span class="o">)</span>   <span class="c1"># 设定可执行文件的路径</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">aux_source_directory<span class="o">(</span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/src SRC_LIST<span class="o">)</span>    <span class="c1"># 添加src目录下所有源文件路径到SRC_LIST变量中</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">add_executable<span class="o">(</span> <span class="c1"># 通过源文件创建目标可执行文件</span>
+</span></span><span class="line"><span class="cl">    my_hello
+</span></span><span class="line"><span class="cl">    <span class="si">${</span><span class="nv">SRC_LIST</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="共享库">共享库
+</h2><ul>
+<li>在创建共享库的项目中，有如下目录结构</li>
+<li>注意到bin中多出了libcommon.dll动态链接库文件。同时，main程序在项目目录下，其他.cpp文件存放在了src目录中，头文件存放在了include目录中。</li>
+</ul>
+<p><img src="/index.assets/image-20250110221848629.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250110221848629"
+	
+	
+></p>
+<ul>
+<li>CMakeLists.txt中的代码如下</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cmake_minimum_required<span class="o">(</span>VERSION 3.29.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">project<span class="o">(</span>planning<span class="o">)</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>CMAKE_CXX_STANDARD 17<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置生成的动态库存放路径</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>CMAKE_RUNTIME_OUTPUT_DIRECTORY <span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/bin<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#linux下使用 CMAKE_LIBRARY_OUTPUT_DIRECTORY 变量</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#静态库使用 CMAKE_ARCHIVE_OUTPUT_DIRECTORY 变量</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">aux_source_directory<span class="o">(</span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/src SRC_LISTS<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建了名为common的动态库</span>
+</span></span><span class="line"><span class="cl">add_library<span class="o">(</span>common 
+</span></span><span class="line"><span class="cl">SHARED
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">SRC_LISTS</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># add_library(common STATIC ${SRC_LISTS}) 创建的是静态库</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 为动态库添加头文件目录</span>
+</span></span><span class="line"><span class="cl">target_include_directories<span class="o">(</span>common
+</span></span><span class="line"><span class="cl">PUBLIC
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/include
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#生成可执行程序</span>
+</span></span><span class="line"><span class="cl">add_executable<span class="o">(</span>planning_main planning_main.cpp<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 为目标 planning_main 设置头文件目录</span>
+</span></span><span class="line"><span class="cl">target_include_directories<span class="o">(</span>planning_main
+</span></span><span class="line"><span class="cl">    PUBLIC
+</span></span><span class="line"><span class="cl">    <span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/include
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 为目标 planning_main 链接 common 库</span>
+</span></span><span class="line"><span class="cl">target_link_libraries<span class="o">(</span>planning_main
+</span></span><span class="line"><span class="cl">    PUBLIC
+</span></span><span class="line"><span class="cl">    common
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cmakelists嵌套">CmakeLists嵌套
+</h2><ul>
+<li>项目有如下目录结构</li>
+<li>项目文件夹下有一个CmakeLists文件；src文件夹里有一个CmakeLists文件，主程序和几个类的文件夹；同时src中每个类各自的文件夹都包含了CmakeLists，.cpp，.h三个文件</li>
+</ul>
+<p><img src="/index.assets/image-20250112222524977.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250112222524977"
+	
+	
+></p>
+<ul>
+<li>
+<p>嵌套使用的时候上层CmakeLists文件的变量会传入到下层的CmakeLists文件当中。</p>
+</li>
+<li>
+<p>项目文件夹下的CmakeLists.txt代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cmake_minimum_required<span class="o">(</span>VERSION 3.29.0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">project<span class="o">(</span>planning
+</span></span><span class="line"><span class="cl">    VERSION 0.0.1
+</span></span><span class="line"><span class="cl">    DESCRIPTION <span class="s2">&#34;a demo of cmake planning&#34;</span>
+</span></span><span class="line"><span class="cl">    LANGUAGES CXX
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>CMAKE_CXX_STANDARD 17<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 一些后面要使用的变量</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>CMAKE_RUNTIME_OUTPUT_DIRECTORY <span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/bin<span class="o">)</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>PROCESS_DIR <span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/src/process<span class="o">)</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>PNC_MAP_DIR <span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/src/pnc_map<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 增加子目录</span>
+</span></span><span class="line"><span class="cl">add_subdirectory<span class="o">(</span>src<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>src文件夹下的CmakeLists.txt代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">project<span class="o">(</span>planning_main<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加子目录</span>
+</span></span><span class="line"><span class="cl">add_subdirectory<span class="o">(</span>pnc_map<span class="o">)</span>
+</span></span><span class="line"><span class="cl">add_subdirectory<span class="o">(</span>process<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据planning_main.cpp形成可执行文件</span>
+</span></span><span class="line"><span class="cl">add_executable<span class="o">(</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span> planning_main.cpp<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成可执行文件需要process.h</span>
+</span></span><span class="line"><span class="cl">target_include_directories<span class="o">(</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">PUBLIC
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">PROCESS_DIR</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 链接库需要process库</span>
+</span></span><span class="line"><span class="cl">target_link_libraries<span class="o">(</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">    PUBLIC
+</span></span><span class="line"><span class="cl">    process
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>两个类中的CmakeLists代码分别如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">project<span class="o">(</span>process<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">add_library<span class="o">(</span> <span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">SHARED
+</span></span><span class="line"><span class="cl">process.cpp
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成库需要pnc_map.h	注意，这是根据代码的关系决定，本例代码中，类process有pnc_maplei&#39;x的成员变量</span>
+</span></span><span class="line"><span class="cl">target_include_directories<span class="o">(</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span> 
+</span></span><span class="line"><span class="cl">PUBLIC
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">PNC_MAP_DIR</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成库需要pnc_map库</span>
+</span></span><span class="line"><span class="cl">target_link_libraries<span class="o">(</span><span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">PUBLIC
+</span></span><span class="line"><span class="cl">pnc_map
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">project<span class="o">(</span>pnc_map<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">add_library<span class="o">(</span> <span class="si">${</span><span class="nv">PROJECT_NAME</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">SHARED
+</span></span><span class="line"><span class="cl">pnc_map.cpp
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/helena-hertz-wWZzXlDpMog-unsplash.46f61e8ea6a2df8fc5bf1d24a17c44a6_hu3238087930799200081.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post C&#43;&#43;11线程池"
+                        data-key="c&#43;&#43;11线程池" 
+                        data-hash="md5-RvYejqai34/Fvx0koXxEpg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43;11线程池</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 YC奕晨
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://zhichenf.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://zhichenf.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+
+<style>
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    function initTocHide() {
+        
+        let toc = document.querySelector(".widget--toc");
+        if (!toc) {
+            return;
+        }
+        
+        window.addEventListener('scroll', function() {
+            
+            let currentLi = document.querySelector(".active-class");
+            if (!currentLi) {
+                return
+            }
+            
+            let elementsByClassName = document.querySelectorAll(".open");
+            if (elementsByClassName.length > 0) {
+                elementsByClassName.forEach((ul) => {
+                    ul.classList.remove("open")
+                })
+            }
+            
+            if (currentLi.children.length > 1) {
+                currentLi.children[1].classList.add("open")
+            }
+            
+            let ul = currentLi.parentElement;
+            do {
+                ul.classList.add("open");
+                ul = ul.parentElement.parentElement
+            } while (ul !== undefined && (ul.localName === 'ul' || ul.localName === 'ol'))
+        });
+    }
+    initTocHide()
+</script>
+
+    </body>
+</html>
