@@ -783,7 +783,7 @@
         <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
         
         <guid>https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/helena-hertz-wWZzXlDpMog-unsplash.jpg" alt="Featured image of post C&#43;&#43;11线程池" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <description>&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;在C++11之前，标准库并不提供线程相关的支持（如&lt;code&gt;std::thread&lt;/code&gt;、&lt;code&gt;std::mutex&lt;/code&gt;等），因此在C++11之前创建线程池需要依赖于操作系统的线程库或第三方库，如 &lt;strong&gt;POSIX线程（pthread）&lt;/strong&gt; 或 &lt;strong&gt;Boost.Thread&lt;/strong&gt;。而在c++11之后，我们可以使用c++的标准库来实现线程池，从而写出跨平台的线程池。&lt;/p&gt;
 &lt;/blockquote&gt;
