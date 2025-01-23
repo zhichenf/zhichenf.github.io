@@ -277,16 +277,11 @@
         <li><a href="#具体使用">具体使用</a></li>
       </ol>
     </li>
-  </ol>
-
-  <ol>
-    <li><a href="#stdasync-1">std::async</a></li>
-    <li><a href="#stdpackaged_task">std::packaged_task</a></li>
     <li><a href="#stdpromise">std::promise</a>
       <ol>
         <li><a href="#stdpromise-的核心功能"><strong><code>std::promise</code> 的核心功能</strong></a></li>
-        <li><a href="#stdpromise-的主要方法">std::promise` 的主要方法**</a></li>
-        <li><a href="#stdpromise-的使用示例">std::promise` 的使用示例**</a></li>
+        <li><a href="#stdpromise-的主要方法">std::promise 的<strong>主要方法</strong></a></li>
+        <li><a href="#stdpromise-的使用示例">std::promise 的<strong>使用示例</strong></a></li>
       </ol>
     </li>
   </ol>
@@ -360,7 +355,7 @@
     
     <h2 id="引言">引言
 </h2><blockquote>
-<p><code>std::async</code>、<code>std::packaged_task</code> 和 <code>std::promise</code> 是C++11引入的三个用于异步编程的工具，它们都与 <code>std::future</code> 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在**&lt;future&gt;**头文件中声明。</p>
+<p><code>std::async</code>、<code>std::packaged_task</code> 和 <code>std::promise</code> 是C++11引入的三个用于异步编程的工具，它们都与 <code>std::future</code> 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&lt;future&gt;头文件中声明。</p>
 </blockquote>
 <h2 id="stdfuture">std::future
 </h2><h3 id="stdfuture-的核心功能"><strong><code>std::future</code> 的核心功能</strong>
@@ -609,15 +604,15 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<h1 id="stdasync和sdtpackaged_task使用对比">std::async和sdt::packaged_task&lt;&gt;使用对比
-</h1><h2 id="stdasync-1">std::async
-</h2><ul>
+<p>std::async和sdt::packaged_task&lt;&gt;使用对比</p>
+<p>std::async</p>
+<ul>
 <li>将任务(函数)交给它，由它决定立刻执行还是延时执行，并直接返回future对象用来获取返回值。</li>
 <li>std::launch::async立刻执行函数，会创建新线程</li>
 <li>std::launch::deferred不会立刻执行，future对象调用wait或get时候才执行，不会创建新线程</li>
 </ul>
-<h2 id="stdpackaged_task">std::packaged_task
-</h2><ul>
+<p>std::packaged_task</p>
+<ul>
 <li>直接绑定任务，通过get_future成员方法得到future对象，通过oprator()进行任务的调用。</li>
 <li>手动控制调用的时机</li>
 </ul>
@@ -771,7 +766,7 @@
 </li>
 </ul>
 <hr>
-<h3 id="stdpromise-的主要方法">std::promise` 的主要方法**
+<h3 id="stdpromise-的主要方法">std::promise 的<strong>主要方法</strong>
 </h3><div class="table-wrapper"><table>
   <thead>
       <tr>
@@ -794,7 +789,7 @@
       </tr>
   </tbody>
 </table></div>
-<h3 id="stdpromise-的使用示例">std::promise` 的使用示例**
+<h3 id="stdpromise-的使用示例">std::promise 的<strong>使用示例</strong>
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1

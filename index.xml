@@ -15,7 +15,7 @@
         <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/</guid>
         <description>&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;std::async&lt;/code&gt;、&lt;code&gt;std::packaged_task&lt;/code&gt; 和 &lt;code&gt;std::promise&lt;/code&gt; 是C++11引入的三个用于异步编程的工具，它们都与 &lt;code&gt;std::future&lt;/code&gt; 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在**&amp;lt;future&amp;gt;**头文件中声明。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;std::async&lt;/code&gt;、&lt;code&gt;std::packaged_task&lt;/code&gt; 和 &lt;code&gt;std::promise&lt;/code&gt; 是C++11引入的三个用于异步编程的工具，它们都与 &lt;code&gt;std::future&lt;/code&gt; 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&amp;lt;future&amp;gt;头文件中声明。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;stdfuture&#34;&gt;std::future
 &lt;/h2&gt;&lt;h3 id=&#34;stdfuture-的核心功能&#34;&gt;&lt;strong&gt;&lt;code&gt;std::future&lt;/code&gt; 的核心功能&lt;/strong&gt;
@@ -264,15 +264,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;h1 id=&#34;stdasync和sdtpackaged_task使用对比&#34;&gt;std::async和sdt::packaged_task&amp;lt;&amp;gt;使用对比
-&lt;/h1&gt;&lt;h2 id=&#34;stdasync-1&#34;&gt;std::async
-&lt;/h2&gt;&lt;ul&gt;
+&lt;p&gt;std::async和sdt::packaged_task&amp;lt;&amp;gt;使用对比&lt;/p&gt;
+&lt;p&gt;std::async&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;将任务(函数)交给它，由它决定立刻执行还是延时执行，并直接返回future对象用来获取返回值。&lt;/li&gt;
 &lt;li&gt;std::launch::async立刻执行函数，会创建新线程&lt;/li&gt;
 &lt;li&gt;std::launch::deferred不会立刻执行，future对象调用wait或get时候才执行，不会创建新线程&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;stdpackaged_task&#34;&gt;std::packaged_task
-&lt;/h2&gt;&lt;ul&gt;
+&lt;p&gt;std::packaged_task&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;直接绑定任务，通过get_future成员方法得到future对象，通过oprator()进行任务的调用。&lt;/li&gt;
 &lt;li&gt;手动控制调用的时机&lt;/li&gt;
 &lt;/ul&gt;
@@ -426,7 +426,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;stdpromise-的主要方法&#34;&gt;std::promise` 的主要方法**
+&lt;h3 id=&#34;stdpromise-的主要方法&#34;&gt;std::promise 的&lt;strong&gt;主要方法&lt;/strong&gt;
 &lt;/h3&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -449,7 +449,7 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&#34;stdpromise-的使用示例&#34;&gt;std::promise` 的使用示例**
+&lt;h3 id=&#34;stdpromise-的使用示例&#34;&gt;std::promise 的&lt;strong&gt;使用示例&lt;/strong&gt;
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
