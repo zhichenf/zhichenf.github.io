@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="介绍标准库中future、async、packaged_task、promise等工具。">
+<title>C&#43;&#43;异步编程工具</title>
+
+<link rel='canonical' href='https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/'>
+
+<link rel="stylesheet" href="/scss/style.min.e79c2ef55c00bf5b53033723edcfcf0c439b49ad7611445c6927f2c7c723a03e.css"><meta property='og:title' content="C++异步编程工具">
+<meta property='og:description' content="介绍标准库中future、async、packaged_task、promise等工具。">
+<meta property='og:url' content='https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/'>
+<meta property='og:site_name' content='奕晨&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-01-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-23T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="C++异步编程工具">
+<meta name="twitter:description" content="介绍标准库中future、async、packaged_task、promise等工具。">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/qyc_hu_2055393e78872625.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">👻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">奕晨&#39;s blog</a></h1>
+            <h2 class="site-description">欢迎来到我的博客，在这里让我们一起体验编程的奥妙！</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1767346082?spm_id_from=333.1007.0.0'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z"></path> <path d="M8 3l2 3"></path> <path d="M16 3l-2 3"></path> <path d="M9 13v-2"></path> <path d="M15 11v2"></path> </svg> 
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/zhichenf'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E4%BB%8B%E7%BB%8D/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>介绍</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#stdfuture">std::future</a>
+      <ol>
+        <li><a href="#1-stdfuture-的核心功能">1. <strong><code>std::future</code> 的核心功能</strong></a></li>
+        <li><a href="#2-stdfuture-的主要方法">2. <strong><code>std::future</code> 的主要方法</strong></a></li>
+      </ol>
+    </li>
+    <li><a href="#get和wait方法">get和wait方法</a></li>
+    <li><a href="#stdasync">std::async</a></li>
+    <li><a href="#stdpackage_task">std::package_task</a>
+      <ol>
+        <li><a href="#1-stdpackaged_task-的核心功能">1. <strong><code>std::packaged_task</code> 的核心功能</strong></a></li>
+        <li><a href="#2-stdpackaged_task-的主要方法">2. <strong><code>std::packaged_task</code> 的主要方法</strong></a></li>
+        <li><a href="#3具体使用">3.具体使用</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#stdasync-1">std::async</a></li>
+    <li><a href="#stdpackaged_task">std::packaged_task</a></li>
+    <li><a href="#stdpromise">std::promise</a>
+      <ol>
+        <li><a href="#1-stdpromise-的核心功能">1. <strong><code>std::promise</code> 的核心功能</strong></a></li>
+        <li><a href="#2-stdpromise-的主要方法">2. <strong><code>std::promise</code> 的主要方法</strong></a></li>
+        <li><a href="#3-stdpromise-的使用示例">3. <strong><code>std::promise</code> 的使用示例</strong></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c&#43;&#43;%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="background-color: #2a9d8f; color: #fff;">
+                C&#43;&#43;并发编程
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/">C&#43;&#43;异步编程工具</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            介绍标准库中future、async、packaged_task、promise等工具。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-01-23</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="引言">引言
+</h2><blockquote>
+<p><code>std::async</code>、<code>std::packaged_task</code> 和 <code>std::promise</code> 是C++11引入的三个用于异步编程的工具，它们都与 <code>std::future</code> 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在**&lt;future&gt;**头文件中声明。</p>
+</blockquote>
+<h2 id="stdfuture">std::future
+</h2><h3 id="1-stdfuture-的核心功能">1. <strong><code>std::future</code> 的核心功能</strong>
+</h3><ul>
+<li><strong>获取异步操作的结果</strong>：
+<ul>
+<li>通过 <code>get()</code> 方法获取异步操作的结果。</li>
+<li>如果结果尚未准备好，<code>get()</code> 会阻塞当前线程，直到结果可用。</li>
+</ul>
+</li>
+<li><strong>检查异步操作的状态</strong>：
+<ul>
+<li>通过 <code>valid()</code> 方法检查 <code>std::future</code> 是否关联了一个有效的共享状态。</li>
+<li>通过 <code>wait()</code>、<code>wait_for()</code> 和 <code>wait_until()</code> 方法等待异步操作完成。</li>
+</ul>
+</li>
+<li><strong>移动语义</strong>：
+<ul>
+<li><code>std::future</code> 只能移动（Move），不能复制。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-stdfuture-的主要方法">2. <strong><code>std::future</code> 的主要方法</strong>
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">方法</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong><code>get()</code></strong></td>
+          <td style="text-align: left">获取异步操作的结果。如果结果未准备好，会阻塞当前线程直到结果可用。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>valid()</code></strong></td>
+          <td style="text-align: left">检查 <code>std::future</code> 是否关联了一个有效的共享状态。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>wait()</code></strong></td>
+          <td style="text-align: left">阻塞当前线程，直到异步操作完成。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>wait_for()</code></strong></td>
+          <td style="text-align: left">阻塞当前线程一段时间，等待异步操作完成。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>wait_until()</code></strong></td>
+          <td style="text-align: left">阻塞当前线程直到某个时间点，等待异步操作完成。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>share()</code></strong></td>
+          <td style="text-align: left">将 <code>std::future</code> 转换为 <code>std::shared_future</code>，允许多个线程共享结果。</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<h2 id="get和wait方法">get和wait方法
+</h2><p>wait方法没有返回值，只是等待异步操作完成</p>
+<p>get方法等待异步操作完成并会返回具体future&lt;T&gt;中T类型的值</p>
+<p>调用wait方法后，还可以调用get方法；返过来则不行</p>
+</blockquote>
+<ul>
+<li>具体使用看后面小节与其他工具相互配合</li>
+</ul>
+<h2 id="stdasync">std::async
+</h2><ul>
+<li>async是一个模板函数，下面是这个函数的使用方法。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">func1</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; (hello world in func1) &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func2</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; (hello world in func2) &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//第一个参数的两种形式deferred   async(可以省略)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">async</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">launch</span><span class="o">::</span><span class="n">deferred</span><span class="p">,</span> <span class="n">func1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//如果第一个参数是deferrd，则func1不会立即执行，等到后面调用get()或wait()方法时才会执行。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//如果第一个参数是async，创建一个新线程立刻执行func1，并返回结果。(async可以省略)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//如果第一个参数是 deferred | async ，那么就会由async的实现自行决定选择运行方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">func2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; Result: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">f1</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>       <span class="c1">//等待func1执行完毕，并获取结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="stdpackage_task">std::package_task
+</h2><h3 id="1-stdpackaged_task-的核心功能">1. <strong><code>std::packaged_task</code> 的核心功能</strong>
+</h3><ul>
+<li><strong>包装可调用对象</strong>：
+<ul>
+<li><code>std::packaged_task</code> 可以包装一个可调用对象（函数、lambda表达式、函数对象等）。</li>
+</ul>
+</li>
+<li><strong>关联 <code>std::future</code></strong>：
+<ul>
+<li>通过 <code>get_future()</code> 方法，可以获取一个与任务结果关联的 <code>std::future</code> 对象。</li>
+</ul>
+</li>
+<li><strong>执行任务</strong>：
+<ul>
+<li>调用 <code>operator()</code> 或将其传递给线程执行时，任务会被执行，并将返回值或异常自动设置到 <code>std::future</code> 中。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-stdpackaged_task-的主要方法">2. <strong><code>std::packaged_task</code> 的主要方法</strong>
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">方法</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong><code>operator()</code></strong></td>
+          <td style="text-align: left">执行包装的可调用对象，并将返回值或异常与 <code>std::future</code> 关联。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>get_future()</code></strong></td>
+          <td style="text-align: left">获取与 <code>std::packaged_task</code> 关联的 <code>std::future</code> 对象。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>reset()</code></strong></td>
+          <td style="text-align: left">重置 <code>std::packaged_task</code>，使其可以重新包装一个新的可调用对象。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="3具体使用">3.具体使用
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//函数模板参数指定函数的参数和返回值
+</span></span></span><span class="line"><span class="cl"><span class="c1">//传入的函数不需要严格匹配，但是函数参数应当可以进行隐式转换
+</span></span></span><span class="line"><span class="cl"><span class="c1">//该对象含有operator(),是调用对象，可以传给std::function
+</span></span></span><span class="line"><span class="cl"><span class="c1">//该对象可以移动，但是不能拷贝
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">packaged_task</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">task</span><span class="p">(</span><span class="n">print</span><span class="p">);</span>	<span class="c1">//传入函数参数可以发生隐式类型转换即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fut</span> <span class="o">=</span> <span class="n">task</span><span class="p">.</span><span class="n">get_future</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//在main函数执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">task</span><span class="p">(</span><span class="mf">3.14159265359</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fut</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>	<span class="c1">//执行完task才会得到结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">packaged_task</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;&amp;&amp;</span> <span class="n">task</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">task</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">packaged_task</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">task</span><span class="p">(</span><span class="n">print</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fut</span> <span class="o">=</span> <span class="n">task</span><span class="p">.</span><span class="n">get_future</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//在新线程上面去执行task
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">thread</span> <span class="n">t1</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task</span><span class="p">),</span><span class="mf">3.1415926</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fut</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>		<span class="c1">//等待t1线程的task执行结束才会获得值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">t1</span><span class="p">.</span><span class="n">join</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<blockquote>
+<h1 id="stdasync和sdtpackaged_task使用对比">std::async和sdt::packaged_task&lt;&gt;使用对比
+</h1><h2 id="stdasync-1">std::async
+</h2><ul>
+<li>将任务(函数)交给它，由它决定立刻执行还是延时执行，并直接返回future对象用来获取返回值。</li>
+<li>std::launch::async立刻执行函数，会创建新线程</li>
+<li>std::launch::deferred不会立刻执行，future对象调用wait或get时候才执行，不会创建新线程</li>
+</ul>
+<h2 id="stdpackaged_task">std::packaged_task
+</h2><ul>
+<li>直接绑定任务，通过get_future成员方法得到future对象，通过oprator()进行任务的调用。</li>
+<li>手动控制调用的时机</li>
+</ul>
+<p>对比下面三个程序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">fut</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fut</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fut</span> <span class="o">=</span>  <span class="n">async</span><span class="p">(</span><span class="n">launch</span><span class="o">::</span><span class="n">deferred</span><span class="p">,</span> <span class="n">print</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">thread</span> <span class="n">t1</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">fut</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fut</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>		<span class="c1">//立刻执行get,但是t1线程之后会执行wait导致报错。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">t1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">fut</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fut</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fut</span> <span class="o">=</span>  <span class="n">async</span><span class="p">(</span><span class="n">launch</span><span class="o">::</span><span class="n">deferred</span><span class="p">,</span> <span class="n">print</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">thread</span> <span class="n">t1</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">fut</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">auto</span> <span class="n">state</span> <span class="o">=</span> <span class="n">fut</span><span class="p">.</span><span class="n">wait_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="k">while</span> <span class="p">(</span><span class="n">state</span> <span class="o">!=</span> <span class="n">future_status</span><span class="o">::</span><span class="n">ready</span><span class="p">)</span> <span class="p">{</span>		<span class="c1">//异步任务还没有结束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">state</span> <span class="o">=</span> <span class="n">fut</span><span class="p">.</span><span class="n">wait_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">200</span><span class="p">));</span>	<span class="c1">//继续等待
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fut</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>	<span class="c1">//调用get时候，异步任务以及结束，这里只是获得结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">t1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">packaged_task</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;&amp;&amp;</span> <span class="n">task</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="n">task</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">packaged_task</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">task</span><span class="p">(</span><span class="n">print</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fut</span> <span class="o">=</span> <span class="n">task</span><span class="p">.</span><span class="n">get_future</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">thread</span> <span class="n">t</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task</span><span class="p">),</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fut</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">t</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<h2 id="stdpromise">std::promise
+</h2><h3 id="1-stdpromise-的核心功能">1. <strong><code>std::promise</code> 的核心功能</strong>
+</h3><ul>
+<li><strong>用途</strong>：<code>std::promise</code> 用于手动设置一个值或异常，并将其与 <code>std::future</code> 关联。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>需要显式调用 <code>set_value()</code> 或 <code>set_exception()</code> 来设置值或异常。</li>
+<li>适用于需要手动控制结果设置的场景。</li>
+<li>通常用于将结果从一个线程传递到另一个线程。</li>
+<li><strong><code>std::promise</code> 不能复制</strong>，但它支持<strong>移动语义</strong>（Move Semantics）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-stdpromise-的主要方法">2. <strong><code>std::promise</code> 的主要方法</strong>
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">方法</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong><code>set_value()</code></strong></td>
+          <td style="text-align: left">设置值，并将 <code>std::future</code> 标记为就绪。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>set_exception()</code></strong></td>
+          <td style="text-align: left">设置异常，并将 <code>std::future</code> 标记为就绪。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong><code>get_future()</code></strong></td>
+          <td style="text-align: left">获取与 <code>std::promise</code> 关联的 <code>std::future</code> 对象。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="3-stdpromise-的使用示例">3. <strong><code>std::promise</code> 的使用示例</strong>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;future&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">task</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">prom</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>  <span class="c1">// 模拟耗时操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">prom</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>  <span class="c1">// 设置值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">prom</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">future</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fut</span> <span class="o">=</span> <span class="n">prom</span><span class="p">.</span><span class="n">get_future</span><span class="p">();</span>  <span class="c1">// 获取与 promise 关联的 future
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">prom</span><span class="p">));</span>  <span class="c1">// 启动线程，传递 promise
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Waiting for the result...&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">fut</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>  <span class="c1">// 阻塞，直到 promise 设置值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Result: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">t</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>  <span class="c1">// 等待线程结束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43;11线程池</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 YC奕晨
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://zhichenf.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://zhichenf.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+
+<style>
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    function initTocHide() {
+        
+        let toc = document.querySelector(".widget--toc");
+        if (!toc) {
+            return;
+        }
+        
+        window.addEventListener('scroll', function() {
+            
+            let currentLi = document.querySelector(".active-class");
+            if (!currentLi) {
+                return
+            }
+            
+            let elementsByClassName = document.querySelectorAll(".open");
+            if (elementsByClassName.length > 0) {
+                elementsByClassName.forEach((ul) => {
+                    ul.classList.remove("open")
+                })
+            }
+            
+            if (currentLi.children.length > 1) {
+                currentLi.children[1].classList.add("open")
+            }
+            
+            let ul = currentLi.parentElement;
+            do {
+                ul.classList.add("open");
+                ul = ul.parentElement.parentElement
+            } while (ul !== undefined && (ul.localName === 'ul' || ul.localName === 'ol'))
+        });
+    }
+    initTocHide()
+</script>
+
+<script>
+	const cssPath = "https://zhichenf.github.io/waifu/waifu.css"
+	const waifuTipsJsonPath = "https://zhichenf.github.io/waifu/waifu-tips.json"
+	
+	const live2d_path = "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/";
+	
+
+	
+	function loadExternalResource(url, type) {
+		return new Promise((resolve, reject) => {
+			let tag;
+
+			if (type === "css") {
+				tag = document.createElement("link");
+				tag.rel = "stylesheet";
+				tag.href = url;
+			}
+			else if (type === "js") {
+				tag = document.createElement("script");
+				tag.src = url;
+			}
+			if (tag) {
+				tag.onload = () => resolve(url);
+				tag.onerror = () => reject(url);
+				document.head.appendChild(tag);
+			}
+		});
+	}
+
+	
+	if (screen.width >= 768) {
+		Promise.all([
+			loadExternalResource(cssPath, "css"),
+			loadExternalResource(live2d_path + "live2d.min.js", "js"),
+			loadExternalResource(live2d_path + "waifu-tips.js", "js")
+		]).then(() => {
+			
+			initWidget({
+				waifuPath: waifuTipsJsonPath,
+				
+				cdnPath: "https://cdn.jsdelivr.net/gh/zhichenf/static-resource@v1.0.0",
+				
+				tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
+			});
+		});
+	}
+</script>
+
+    </body>
+</html>

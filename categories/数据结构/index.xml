@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>数据结构和算法 on 奕晨&#39;s blog</title>
-        <link>https://zhichenf.github.io/categories/data_structure/</link>
+        <link>https://zhichenf.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
         <description>Recent content in 数据结构和算法 on 奕晨&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <copyright>YC奕晨</copyright><atom:link href="https://zhichenf.github.io/categories/data_structure/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>YC奕晨</copyright><atom:link href="https://zhichenf.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>
