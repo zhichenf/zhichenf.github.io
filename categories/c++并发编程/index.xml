@@ -8,7 +8,7 @@
         <language>en</language>
         <copyright>YC奕晨</copyright>
         <lastBuildDate>Thu, 23 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/c++%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>C&#43;&#43;异步编程工具</title>
+        <title>C&#43;&#43;异步编程工具 (一)</title>
         <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Thu, 23 Jan 2025 00:00:00 +0000</pubDate>
         
@@ -500,7 +500,18 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description>
+&lt;/div&gt;&lt;h2 id=&#34;future保存异常&#34;&gt;future保存异常
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;一下几种情况可以将异常保存到future中，当future.get()的时候会重新抛出异常
+&lt;ul&gt;
+&lt;li&gt;async执行操作的时候发生异常，会将异常保存到future中。&lt;/li&gt;
+&lt;li&gt;packaged_task执行任务函数的时候抛出异常，会将异常保存到future中。&lt;/li&gt;
+&lt;li&gt;promise对象调用set_exception()设置异常。&lt;/li&gt;
+&lt;li&gt;当async和packaged_task对象在future未就绪的时候被销毁，他们的析构函数就会将std::future_error存储为异步任务的状态，它的值（std::future_error::code()方法获得）是std::future_errc::broken_promise(枚举类型)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
         </item>
         <item>
         <title>C&#43;&#43;11线程池</title>
