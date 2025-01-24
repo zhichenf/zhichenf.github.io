@@ -9,10 +9,10 @@
         <copyright>YC奕晨</copyright>
         <lastBuildDate>Fri, 24 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>C&#43;&#43;异步编程工具 (二)</title>
-        <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/</link>
+        <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%BA%8C/</link>
         <pubDate>Fri, 24 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/</guid>
+        <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%BA%8C/</guid>
         <description>&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;std::shared_future&lt;/code&gt; 是 C++ 标准库中的一个类，用于表示可以共享的异步计算结果。它与 &lt;code&gt;std::future&lt;/code&gt; 类似，但允许多个线程共享同一个异步结果，而 &lt;code&gt;std::future&lt;/code&gt; 只能被单个线程访问。&lt;/p&gt;
@@ -135,10 +135,10 @@
         </item>
         <item>
         <title>C&#43;&#43;异步编程工具 (一)</title>
-        <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/</link>
+        <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%B8%80/</link>
         <pubDate>Thu, 23 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/</guid>
+        <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%B8%80/</guid>
         <description>&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;std::async&lt;/code&gt;、&lt;code&gt;std::packaged_task&lt;/code&gt; 和 &lt;code&gt;std::promise&lt;/code&gt; 是C++11引入的三个用于异步编程的工具，它们都与 &lt;code&gt;std::future&lt;/code&gt; 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&amp;lt;future&amp;gt;头文件中声明。&lt;/p&gt;
