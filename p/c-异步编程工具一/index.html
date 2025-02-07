@@ -356,8 +356,7 @@
     
     <h2 id="引言">引言
 </h2><blockquote>
-<p><code>std::async</code>、<code>std::packaged_task</code> 和 <code>std::promise</code> 是C++11引入的三个用于异步编程的工具，它们都与 <code>std::future</code> 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&lt;future&gt;头文件中声明。</p>
-</blockquote>
+<p><code>std::async</code>、<code>std::packaged_task</code> 和 <code>std::promise</code> 是C++11引入的三个用于异步编程的工具，它们都与 <code>std::future</code> 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&lt;future&gt;头文件中声明。</p></blockquote>
 <h2 id="stdfuture">std::future
 </h2><h3 id="stdfuture-的核心功能"><strong><code>std::future</code> 的核心功能</strong>
 </h3><ul>
@@ -419,8 +418,7 @@
 <h2 id="get和wait方法">get和wait方法
 </h2><p>wait方法没有返回值，只是等待异步操作完成</p>
 <p>get方法等待异步操作完成并会返回具体future&lt;T&gt;中T类型的值</p>
-<p>调用wait方法后，还可以调用get方法；返过来则不行</p>
-</blockquote>
+<p>调用wait方法后，还可以调用get方法；返过来则不行</p></blockquote>
 <ul>
 <li>具体使用看后面小节与其他工具相互配合</li>
 </ul>

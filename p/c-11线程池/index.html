@@ -352,8 +352,7 @@
     
     <h2 id="引言">引言
 </h2><blockquote>
-<p>在C++11之前，标准库并不提供线程相关的支持（如<code>std::thread</code>、<code>std::mutex</code>等），因此在C++11之前创建线程池需要依赖于操作系统的线程库或第三方库，如 <strong>POSIX线程（pthread）</strong> 或 <strong>Boost.Thread</strong>。而在c++11之后，我们可以使用c++的标准库来实现线程池，从而写出跨平台的线程池。</p>
-</blockquote>
+<p>在C++11之前，标准库并不提供线程相关的支持（如<code>std::thread</code>、<code>std::mutex</code>等），因此在C++11之前创建线程池需要依赖于操作系统的线程库或第三方库，如 <strong>POSIX线程（pthread）</strong> 或 <strong>Boost.Thread</strong>。而在c++11之后，我们可以使用c++的标准库来实现线程池，从而写出跨平台的线程池。</p></blockquote>
 <h2 id="线程池简介">线程池简介
 </h2><h3 id="线程池的定义">线程池的定义
 </h3><p>线程池是一种<strong>线程管理模式</strong>，用于<strong>复用</strong>一组固定数量的线程来执行任务，而不是为每个任务都单独创建和销毁线程。通过线程池，任务被放入任务队列中，由空闲的线程依次取出并执行，从而提升性能和资源利用率。</p>
