@@ -2729,7 +2729,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;std::async和sdt::packaged_task&amp;lt;&amp;gt;使用对比&lt;/p&gt;
+&lt;p&gt;std::async和std::packaged_task&amp;lt;&amp;gt;使用对比&lt;/p&gt;
 &lt;p&gt;std::async&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;将任务(函数)交给它，由它决定立刻执行还是延时执行，并直接返回future对象用来获取返回值。&lt;/li&gt;
