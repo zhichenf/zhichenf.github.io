@@ -548,11 +548,11 @@
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">explicit</span> <span class="n">TaskQueue</span><span class="p">(</span><span class="kt">int</span> <span class="n">que_size</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">TaskQueue</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="nf">Push</span><span class="p">(</span><span class="n">ElemType</span><span class="o">&amp;&amp;</span> <span class="n">ptask</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">void</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="nf">Pop</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ElemType</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="na">[[nodiscard]]</span> <span class="k">auto</span> <span class="n">IsFull</span><span class="p">()</span> <span class="k">const</span> <span class="o">-&gt;</span> <span class="kt">bool</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="na">[[nodiscard]]</span> <span class="k">auto</span> <span class="n">IsEmpty</span><span class="p">()</span> <span class="k">const</span> <span class="o">-&gt;</span> <span class="kt">bool</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="nf">WakeUp</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Push</span><span class="p">(</span><span class="n">ElemType</span><span class="o">&amp;&amp;</span> <span class="n">ptask</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ElemType</span> <span class="nf">Pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">IsFull</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="nf">IsEmpty</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">WakeUp</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">size_t</span> <span class="n">que_size_</span><span class="p">;</span>
@@ -731,13 +731,13 @@
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ThreadPool</span><span class="p">(</span><span class="n">size_t</span> <span class="n">thread_num</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">que_size</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">ThreadPool</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="nf">Start</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">void</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="nf">Stop</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">void</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="nf">AddTask</span><span class="p">(</span><span class="n">Task</span><span class="o">&amp;&amp;</span> <span class="n">task</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Stop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">AddTask</span><span class="p">(</span><span class="n">Task</span><span class="o">&amp;&amp;</span> <span class="n">task</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">GetTask</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Task</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="nf">DoTask</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Task</span> <span class="n">GetTask</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">DoTask</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">size_t</span> <span class="n">thread_num_</span><span class="p">;</span>
