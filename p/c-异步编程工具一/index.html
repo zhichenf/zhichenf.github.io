@@ -264,22 +264,22 @@
     <li><a href="#引言">引言</a></li>
     <li><a href="#stdfuture">std::future</a>
       <ol>
-        <li><a href="#stdfuture-的核心功能"><strong><code>std::future</code> 的核心功能</strong></a></li>
-        <li><a href="#stdfuture-的主要方法"><strong><code>std::future</code> 的主要方法</strong></a></li>
+        <li><a href="#stdfuture-1"><strong><code>std::future</code> 的核心功能</strong></a></li>
+        <li><a href="#stdfuture-2"><strong><code>std::future</code> 的主要方法</strong></a></li>
       </ol>
     </li>
     <li><a href="#get和wait方法">get和wait方法</a></li>
     <li><a href="#stdasync">std::async</a></li>
     <li><a href="#stdpackage_task">std::package_task</a>
       <ol>
-        <li><a href="#stdpackaged_task-的核心功能"><strong><code>std::packaged_task</code> 的核心功能</strong></a></li>
-        <li><a href="#stdpackaged_task-的主要方法"><strong><code>std::packaged_task</code> 的主要方法</strong></a></li>
+        <li><a href="#stdpackaged_task"><strong><code>std::packaged_task</code> 的核心功能</strong></a></li>
+        <li><a href="#stdpackaged_task-1"><strong><code>std::packaged_task</code> 的主要方法</strong></a></li>
         <li><a href="#具体使用">具体使用</a></li>
       </ol>
     </li>
     <li><a href="#stdpromise">std::promise</a>
       <ol>
-        <li><a href="#stdpromise-的核心功能"><strong><code>std::promise</code> 的核心功能</strong></a></li>
+        <li><a href="#stdpromise-1"><strong><code>std::promise</code> 的核心功能</strong></a></li>
         <li><a href="#stdpromise-的主要方法">std::promise 的<strong>主要方法</strong></a></li>
         <li><a href="#stdpromise-的使用示例">std::promise 的<strong>使用示例</strong></a></li>
       </ol>
@@ -358,7 +358,7 @@
 </h2><blockquote>
 <p><code>std::async</code>、<code>std::packaged_task</code> 和 <code>std::promise</code> 是C++11引入的三个用于异步编程的工具，它们都与 <code>std::future</code> 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&lt;future&gt;头文件中声明。</p></blockquote>
 <h2 id="stdfuture">std::future
-</h2><h3 id="stdfuture-的核心功能"><strong><code>std::future</code> 的核心功能</strong>
+</h2><h3 id="stdfuture-1"><strong><code>std::future</code> 的核心功能</strong>
 </h3><ul>
 <li><strong>获取异步操作的结果</strong>：
 <ul>
@@ -379,7 +379,7 @@
 </li>
 </ul>
 <hr>
-<h3 id="stdfuture-的主要方法"><strong><code>std::future</code> 的主要方法</strong>
+<h3 id="stdfuture-2"><strong><code>std::future</code> 的主要方法</strong>
 </h3><div class="table-wrapper"><table>
   <thead>
       <tr>
@@ -475,7 +475,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="stdpackage_task">std::package_task
-</h2><h3 id="stdpackaged_task-的核心功能"><strong><code>std::packaged_task</code> 的核心功能</strong>
+</h2><h3 id="stdpackaged_task"><strong><code>std::packaged_task</code> 的核心功能</strong>
 </h3><ul>
 <li><strong>包装可调用对象</strong>：
 <ul>
@@ -494,7 +494,7 @@
 </li>
 </ul>
 <hr>
-<h3 id="stdpackaged_task-的主要方法"><strong><code>std::packaged_task</code> 的主要方法</strong>
+<h3 id="stdpackaged_task-1"><strong><code>std::packaged_task</code> 的主要方法</strong>
 </h3><div class="table-wrapper"><table>
   <thead>
       <tr>
@@ -752,7 +752,7 @@
 </div>
 </div></blockquote>
 <h2 id="stdpromise">std::promise
-</h2><h3 id="stdpromise-的核心功能"><strong><code>std::promise</code> 的核心功能</strong>
+</h2><h3 id="stdpromise-1"><strong><code>std::promise</code> 的核心功能</strong>
 </h3><ul>
 <li><strong>用途</strong>：<code>std::promise</code> 用于手动设置一个值或异常，并将其与 <code>std::future</code> 关联。</li>
 <li><strong>特点</strong>：

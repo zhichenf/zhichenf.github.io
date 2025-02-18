@@ -264,8 +264,8 @@
     <li><a href="#引言">引言</a></li>
     <li><a href="#stdshared_future">std::shared_future</a>
       <ol>
-        <li><a href="#stdshared_future-的特点"><strong><code>std::shared_future</code> 的特点</strong></a></li>
-        <li><a href="#与-stdfuture-的区别"><strong>与 <code>std::future</code> 的区别</strong></a></li>
+        <li><a href="#stdshared_future-1"><strong><code>std::shared_future</code> 的特点</strong></a></li>
+        <li><a href="#与"><strong>与 <code>std::future</code> 的区别</strong></a></li>
       </ol>
     </li>
     <li><a href="#获取stdshared_future的方式">获取std::shared_future的方式</a></li>
@@ -343,14 +343,14 @@
 </h2><blockquote>
 <p><code>std::shared_future</code> 是 C++ 标准库中的一个类，用于表示可以共享的异步计算结果。它与 <code>std::future</code> 类似，但允许多个线程共享同一个异步结果，而 <code>std::future</code> 只能被单个线程访问。</p></blockquote>
 <h2 id="stdshared_future">std::shared_future
-</h2><h3 id="stdshared_future-的特点"><strong><code>std::shared_future</code> 的特点</strong>
+</h2><h3 id="stdshared_future-1"><strong><code>std::shared_future</code> 的特点</strong>
 </h3><ul>
 <li><strong>共享性</strong>: 多个 <code>std::shared_future</code> 对象可以引用同一个异步计算结果。</li>
 <li><strong>多次访问</strong>: 可以多次调用 <code>get()</code> 方法获取结果，而 <code>std::future</code> 的 <code>get()</code> 只能调用一次。</li>
 <li><strong>线程安全</strong>: 多个线程可以同时访问同一个 <code>std::shared_future</code> 对象。</li>
 </ul>
 <hr>
-<h3 id="与-stdfuture-的区别"><strong>与 <code>std::future</code> 的区别</strong>
+<h3 id="与"><strong>与 <code>std::future</code> 的区别</strong>
 </h3><div class="table-wrapper"><table>
   <thead>
       <tr>

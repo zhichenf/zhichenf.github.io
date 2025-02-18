@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>C&#43;&#43;工具 on 奕晨&#39;s blog</title>
-        <link>https://zhichenf.github.io/categories/c&#43;&#43;%E5%B7%A5%E5%85%B7/</link>
-        <description>Recent content in C&#43;&#43;工具 on 奕晨&#39;s blog</description>
+        <title>开发工具 on 奕晨&#39;s blog</title>
+        <link>https://zhichenf.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
+        <description>Recent content in 开发工具 on 奕晨&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>YC奕晨</copyright>
-        <lastBuildDate>Fri, 10 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/c++%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 10 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>CMake创建c&#43;&#43;项目简明教程</title>
         <link>https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</link>
         <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>

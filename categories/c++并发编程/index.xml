@@ -2359,14 +2359,14 @@
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;std::shared_future&lt;/code&gt; 是 C++ 标准库中的一个类，用于表示可以共享的异步计算结果。它与 &lt;code&gt;std::future&lt;/code&gt; 类似，但允许多个线程共享同一个异步结果，而 &lt;code&gt;std::future&lt;/code&gt; 只能被单个线程访问。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdshared_future&#34;&gt;std::shared_future
-&lt;/h2&gt;&lt;h3 id=&#34;stdshared_future-的特点&#34;&gt;&lt;strong&gt;&lt;code&gt;std::shared_future&lt;/code&gt; 的特点&lt;/strong&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;stdshared_future-1&#34;&gt;&lt;strong&gt;&lt;code&gt;std::shared_future&lt;/code&gt; 的特点&lt;/strong&gt;
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;共享性&lt;/strong&gt;: 多个 &lt;code&gt;std::shared_future&lt;/code&gt; 对象可以引用同一个异步计算结果。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;多次访问&lt;/strong&gt;: 可以多次调用 &lt;code&gt;get()&lt;/code&gt; 方法获取结果，而 &lt;code&gt;std::future&lt;/code&gt; 的 &lt;code&gt;get()&lt;/code&gt; 只能调用一次。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;线程安全&lt;/strong&gt;: 多个线程可以同时访问同一个 &lt;code&gt;std::shared_future&lt;/code&gt; 对象。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;与-stdfuture-的区别&#34;&gt;&lt;strong&gt;与 &lt;code&gt;std::future&lt;/code&gt; 的区别&lt;/strong&gt;
+&lt;h3 id=&#34;与&#34;&gt;&lt;strong&gt;与 &lt;code&gt;std::future&lt;/code&gt; 的区别&lt;/strong&gt;
 &lt;/h3&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -2484,7 +2484,7 @@
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;std::async&lt;/code&gt;、&lt;code&gt;std::packaged_task&lt;/code&gt; 和 &lt;code&gt;std::promise&lt;/code&gt; 是C++11引入的三个用于异步编程的工具，它们都与 &lt;code&gt;std::future&lt;/code&gt; 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&amp;lt;future&amp;gt;头文件中声明。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdfuture&#34;&gt;std::future
-&lt;/h2&gt;&lt;h3 id=&#34;stdfuture-的核心功能&#34;&gt;&lt;strong&gt;&lt;code&gt;std::future&lt;/code&gt; 的核心功能&lt;/strong&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;stdfuture-1&#34;&gt;&lt;strong&gt;&lt;code&gt;std::future&lt;/code&gt; 的核心功能&lt;/strong&gt;
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;获取异步操作的结果&lt;/strong&gt;：
 &lt;ul&gt;
@@ -2505,7 +2505,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;stdfuture-的主要方法&#34;&gt;&lt;strong&gt;&lt;code&gt;std::future&lt;/code&gt; 的主要方法&lt;/strong&gt;
+&lt;h3 id=&#34;stdfuture-2&#34;&gt;&lt;strong&gt;&lt;code&gt;std::future&lt;/code&gt; 的主要方法&lt;/strong&gt;
 &lt;/h3&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -2601,7 +2601,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;stdpackage_task&#34;&gt;std::package_task
-&lt;/h2&gt;&lt;h3 id=&#34;stdpackaged_task-的核心功能&#34;&gt;&lt;strong&gt;&lt;code&gt;std::packaged_task&lt;/code&gt; 的核心功能&lt;/strong&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;stdpackaged_task&#34;&gt;&lt;strong&gt;&lt;code&gt;std::packaged_task&lt;/code&gt; 的核心功能&lt;/strong&gt;
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;包装可调用对象&lt;/strong&gt;：
 &lt;ul&gt;
@@ -2620,7 +2620,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;stdpackaged_task-的主要方法&#34;&gt;&lt;strong&gt;&lt;code&gt;std::packaged_task&lt;/code&gt; 的主要方法&lt;/strong&gt;
+&lt;h3 id=&#34;stdpackaged_task-1&#34;&gt;&lt;strong&gt;&lt;code&gt;std::packaged_task&lt;/code&gt; 的主要方法&lt;/strong&gt;
 &lt;/h3&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -2878,7 +2878,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdpromise&#34;&gt;std::promise
-&lt;/h2&gt;&lt;h3 id=&#34;stdpromise-的核心功能&#34;&gt;&lt;strong&gt;&lt;code&gt;std::promise&lt;/code&gt; 的核心功能&lt;/strong&gt;
+&lt;/h2&gt;&lt;h3 id=&#34;stdpromise-1&#34;&gt;&lt;strong&gt;&lt;code&gt;std::promise&lt;/code&gt; 的核心功能&lt;/strong&gt;
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：&lt;code&gt;std::promise&lt;/code&gt; 用于手动设置一个值或异常，并将其与 &lt;code&gt;std::future&lt;/code&gt; 关联。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：
