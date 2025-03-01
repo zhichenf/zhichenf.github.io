@@ -13,7 +13,7 @@
         <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
         
         <guid>https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</guid>
-        <description>&lt;h2 id=&#34;引言&#34;&gt;引言
+        <description>&lt;img src="https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/12.jpg" alt="Featured image of post CMake创建c&#43;&#43;项目简明教程" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;CMake 是一个跨平台的构建系统生成器，用于自动化构建、测试和打包软件项目的过程。CMake 通过一系列源代码文件和配置设置，生成平台特定的构建文件（例如 Makefile、Visual Studio 项目文件等）。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;cmake语法&#34;&gt;CMake语法

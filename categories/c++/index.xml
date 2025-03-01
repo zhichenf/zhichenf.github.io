@@ -13,7 +13,7 @@
         <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
         
         <guid>https://zhichenf.github.io/p/sfinae/</guid>
-        <description>&lt;h2 id=&#34;引言&#34;&gt;引言
+        <description>&lt;img src="https://zhichenf.github.io/p/sfinae/14.jpg" alt="Featured image of post SFINAE" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;p&gt;​	最近在实现vector的时候，遇到了一个问题：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -178,7 +178,7 @@
         <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
         
         <guid>https://zhichenf.github.io/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/</guid>
-        <description>&lt;h2 id=&#34;引言&#34;&gt;引言
+        <description>&lt;img src="https://zhichenf.github.io/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/15.jpg" alt="Featured image of post 类型萃取" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;在C++中，类型萃取（Type Traits）是一种在编译时获取和操作类型信息的机制。它通过模板元编程技术实现，允许开发者根据类型的特性进行条件编译或执行不同的代码路径。类型萃取类通常定义在&lt;code&gt;&amp;lt;type_traits&amp;gt;&lt;/code&gt;头文件中。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;常见类型萃取类&#34;&gt;常见类型萃取类
