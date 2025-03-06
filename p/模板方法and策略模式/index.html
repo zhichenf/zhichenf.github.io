@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="介绍了模板方法模式和策略模式">
+<title>模板方法和策略模式</title>
+
+<link rel='canonical' href='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/'>
+
+<link rel="stylesheet" href="/scss/style.min.8d934ad4bc016d1815207ceb7e43fb3eb6fedac5e3d051f641d6ce55cf579125.css"><meta property='og:title' content="模板方法和策略模式">
+<meta property='og:description' content="介绍了模板方法模式和策略模式">
+<meta property='og:url' content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/'>
+<meta property='og:site_name' content='奕晨&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-01T00:00:00&#43;00:00'/><meta property='og:image' content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24.jpg' />
+<meta name="twitter:title" content="模板方法和策略模式">
+<meta name="twitter:description" content="介绍了模板方法模式和策略模式"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/qyc_hu_2055393e78872625.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">👻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">奕晨&#39;s blog</a></h1>
+            <h2 class="site-description">欢迎来到我的博客，在这里让我们一起体验编程的奥妙！</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1767346082?spm_id_from=333.1007.0.0'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z"></path> <path d="M8 3l2 3"></path> <path d="M16 3l-2 3"></path> <path d="M9 13v-2"></path> <path d="M15 11v2"></path> </svg> 
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/zhichenf'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E4%BB%8B%E7%BB%8D/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>介绍</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#模板方法模式">模板方法模式</a>
+      <ol>
+        <li><a href="#代码展现">代码展现</a></li>
+      </ol>
+    </li>
+    <li><a href="#策略模式">策略模式</a>
+      <ol>
+        <li><a href="#场景电商平台的折扣策略"><strong>场景：电商平台的折扣策略</strong></a></li>
+        <li><a href="#策略模式的核心思想"><strong>策略模式的核心思想</strong></a></li>
+        <li><a href="#用策略模式实现折扣功能"><strong>用策略模式实现折扣功能</strong></a></li>
+        <li><a href="#代码展现-1">代码展现</a></li>
+      </ol>
+    </li>
+    <li><a href="#两种模式的对比">两种模式的对比</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
+                <img src="/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24_hu_9907692eb64fee50.jpg"
+                        srcset="/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24_hu_9907692eb64fee50.jpg 800w, /p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24_hu_5493457a66b5d54f.jpg 1600w"
+                        width="800" 
+                        height="448" 
+                        loading="lazy"
+                        alt="Featured image of post 模板方法和策略模式" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="background-color: #2a9d8f; color: #fff;">
+                设计模式
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">模板方法和策略模式</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            介绍了模板方法模式和策略模式
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-03-01</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="引言">引言
+</h2><blockquote>
+<p><strong>模板方法模式</strong>和<strong>策略模式</strong>都是行为设计模式，它们的目标都是通过封装算法来提高代码的灵活性和可维护性。然而，它们的实现方式和适用场景有所不同。下面就会介绍这两种设计模式</p></blockquote>
+<h2 id="模板方法模式">模板方法模式
+</h2><p>模板方法的核心思想就是，将操作步骤固定(相当于给你了一个模板)，而实现这些步骤的方法是可以替换的。</p>
+<ul>
+<li>举个例子，班主任想要对班级同学的成绩进行统计并进行排序，学校规定使用了一种软件，这种软件需要人为完成一些步骤才能实现统计。
+<ul>
+<li>将成绩登记到电脑上</li>
+<li>对数据进行排序</li>
+<li>公布成绩（不要这样做！！！不要打击学生的自尊心）</li>
+</ul>
+</li>
+<li>我们必须严格按照学校的要求来做，但是我们可以通过不通的方法来完成学校的要求
+<ul>
+<li>对于登记到电脑上
+<ul>
+<li>这好像只能将成绩一个一个登记到电脑上，没有其他办法了。</li>
+</ul>
+</li>
+<li>对数据进行排序
+<ul>
+<li>我们可以使用冒泡排序</li>
+<li>也可以使用快速排序</li>
+</ul>
+</li>
+<li>最后公布成绩
+<ul>
+<li>我们可以只公布分数而不公布姓名</li>
+<li>我们也可以将分数和姓名一起公布（要被学生骂死了）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>言归正传，这种情况下学校使用的软件相当于一个模板方法，但是有些步骤我们可以选择不同的操作方式。这就是模板方法的思想。</p>
+<h3 id="代码展现">代码展现
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="o">~</span><span class="n">Base</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">DoWork</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Step1</span><span class="p">();</span><span class="n">Step2</span><span class="p">();</span><span class="n">Step3</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Step4</span><span class="p">();</span>        <span class="c1">//钩子操作，空操作，由子类选择是否可以扩展这个操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="kt">void</span> <span class="n">Step1</span><span class="p">()</span> <span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;step1&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="kt">void</span> <span class="nf">Step3</span><span class="p">()</span> <span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;step3&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Step2</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Step4</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//用户来决定使用哪些方法。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Derived1</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Derived1</span><span class="p">()</span> <span class="k">override</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Step2</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;derived1&#39;s step2&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Derived2</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Derived2</span><span class="p">()</span> <span class="k">override</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Step2</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;derived2&#39;s step2&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Step4</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;extend the hook operator&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">p1</span><span class="o">-&gt;</span><span class="n">DoWork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;------------------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p2</span><span class="o">-&gt;</span><span class="n">DoWork</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">p2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>上面的模板函数给出了四个step，其中step2已经被模板方法写死了，你只能这么做（非虚函数），但是有些step模板没有实现（纯虚函数），给了你自由度选择自己的操作方式。</li>
+<li>我们可以看到有一个step4钩子操作，这个构造操作在基类里面通常是个空操作，用来说明在这个地方你可以选择进行一些操作来进行优化，但是如果你优化也ok，这取决与你自己的意愿。</li>
+<li>这样用户就可以定义派生类来继承基类，重写方法来决定一要用什么具体的步骤，你也可以重写上面step4操作进行操作上的一些扩展。</li>
+</ul>
+<h2 id="策略模式">策略模式
+</h2><p>策略模式提供了一种切换算法的思想，对于一个功能，我们可以切换里面的算法来实现不同的功能。对于策略模式，程序员可以先实现不同的策略，等到需要切换策略的时候 ，换一种策略即可。</p>
+<ul>
+<li>
+<h3 id="场景电商平台的折扣策略"><strong>场景：电商平台的折扣策略</strong>
+</h3><p>假设你在一家电商公司工作，负责实现一个购物车的结算功能。购物车需要支持多种折扣策略，例如：</p>
+<ol>
+<li><strong>无折扣</strong>：原价结算。</li>
+<li><strong>固定折扣</strong>：比如满100减10。</li>
+<li><strong>百分比折扣</strong>：比如打8折。</li>
+<li><strong>会员专属折扣</strong>：根据会员等级提供不同的折扣。</li>
+</ol>
+<p>产品经理可能会随时调整折扣策略，或者根据促销活动动态切换折扣方式。如果每次需求变更都修改结算逻辑，代码会变得难以维护。这时，<strong>策略模式</strong>就可以派上用场了！</p>
+<hr>
+<h3 id="策略模式的核心思想"><strong>策略模式的核心思想</strong>
+</h3><p>策略模式的核心是：</p>
+<ul>
+<li><strong>将不同的算法（或行为）封装成独立的类</strong>，并使它们可以互相替换。</li>
+<li><strong>通过组合而不是继承</strong>来实现算法的动态切换。</li>
+</ul>
+<hr>
+<h3 id="用策略模式实现折扣功能"><strong>用策略模式实现折扣功能</strong>
+</h3><ul>
+<li>首先我们实现一个打折的接口，再商品进行结算的时候，直接调用这些接口</li>
+<li>我们可以实现不同的打折方案，在不同的时候，切换打折方案</li>
+<li>这就是策略模式的思想</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码展现-1">代码展现
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// strategy
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">CalcStrategy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="o">~</span><span class="n">CalcStrategy</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">int</span> <span class="nf">calc</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//用户拓展
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">AddStrategy</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CalcStrategy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">calc</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SubStrategy</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CalcStrategy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">calc</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MulStrategy</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CalcStrategy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">calc</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DivStrategy</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CalcStrategy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">calc</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//factory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Factory</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="o">~</span><span class="n">Factory</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="n">CalcStrategy</span><span class="o">*</span> <span class="nf">NewStrategy</span><span class="p">()</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//用户拓展工厂方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">AddFactory</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Factory</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CalcStrategy</span><span class="o">*</span> <span class="nf">NewStrategy</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span><span class="k">return</span> <span class="k">new</span> <span class="n">AddStrategy</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SubFactory</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Factory</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CalcStrategy</span><span class="o">*</span> <span class="nf">NewStrategy</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span><span class="k">return</span> <span class="k">new</span> <span class="n">SubStrategy</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MulFactory</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Factory</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CalcStrategy</span><span class="o">*</span> <span class="nf">NewStrategy</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span><span class="k">return</span> <span class="k">new</span> <span class="n">MulStrategy</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">DivFactory</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Factory</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CalcStrategy</span><span class="o">*</span> <span class="nf">NewStrategy</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span><span class="k">return</span> <span class="k">new</span> <span class="n">DivStrategy</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> <span class="c1">//end of factory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Calculator</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">explicit</span> <span class="n">Calculator</span><span class="p">(</span><span class="n">Factory</span><span class="o">*</span> <span class="n">strategy_factory</span><span class="p">)</span> <span class="p">{</span><span class="n">strategy_</span> <span class="o">=</span> <span class="n">strategy_factory</span><span class="o">-&gt;</span><span class="n">NewStrategy</span><span class="p">();}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">doCalc</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">strategy_</span><span class="o">-&gt;</span><span class="n">calc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">Calculator</span><span class="p">()</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">strategy_</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//对于策略，采用的是组合的方式来进行，可以切换不通的策略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">CalcStrategy</span><span class="o">*</span> <span class="n">strategy_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>      <span class="c1">//end of strategy
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Factory</span><span class="o">*</span> <span class="n">add</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AddFactory</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Factory</span><span class="o">*</span> <span class="n">sub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SubFactory</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Factory</span><span class="o">*</span> <span class="n">mul</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MulFactory</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Factory</span><span class="o">*</span> <span class="n">div</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DivFactory</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">Calculator</span> <span class="n">calculator1</span><span class="p">(</span><span class="n">add</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">calculator1</span><span class="p">.</span><span class="n">doCalc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">Calculator</span> <span class="n">calculator2</span><span class="p">(</span><span class="n">sub</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">calculator2</span><span class="p">.</span><span class="n">doCalc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">Calculator</span> <span class="n">calculator3</span><span class="p">(</span><span class="n">mul</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">calculator3</span><span class="p">.</span><span class="n">doCalc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">Calculator</span> <span class="n">calculator4</span><span class="p">(</span><span class="n">div</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">calculator4</span><span class="p">.</span><span class="n">doCalc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">factory1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">factory2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">factory3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="n">factory4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>可以看出，我们有一个Calculator类用来实现一个计算的功能。
+<ul>
+<li>Calculater 里面组合了一个Strategy类（可以认为功能和实现功能的策略是紧密联系的），我们可以传入不同的策略类来切换策略实现不同的功能</li>
+</ul>
+</li>
+<li>在本例中，我们可以通过工厂方法创建不同的策略，在创建Strategy对象的时候，传入不同的策略从而达到实现不同的功能的目的。</li>
+</ul>
+<h2 id="两种模式的对比">两种模式的对比
+</h2><p>最后，我们再来看一下这两种模式的对比</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left"><strong>对比维度</strong></th>
+          <th style="text-align: left"><strong>模板方法模式</strong></th>
+          <th style="text-align: left"><strong>策略模式</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>定义</strong></td>
+          <td style="text-align: left">定义算法的框架，子类可以重写部分步骤，但不改变算法结构。</td>
+          <td style="text-align: left">定义一系列算法，封装每个算法，使它们可以互换。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>核心思想</strong></td>
+          <td style="text-align: left">将算法的通用部分放在父类中，具体实现延迟到子类。</td>
+          <td style="text-align: left">将算法的选择与使用分离，客户端可以动态选择不同的策略。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>实现方式</strong></td>
+          <td style="text-align: left">基于继承，父类定义算法框架，子类实现具体步骤。</td>
+          <td style="text-align: left">基于组合，通过接口或抽象类定义策略，具体策略由不同类实现。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>灵活性</strong></td>
+          <td style="text-align: left">较低，算法的结构在父类中固定，子类只能改变部分步骤。</td>
+          <td style="text-align: left">较高，客户端可以动态切换策略，算法可以完全替换。</td>
+      </tr>
+  </tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/18.2fe2fc6c11b8ffd39c75501e70dd20ba_hu_3fc9314ac3b05884.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 单例模式"
+                        data-key="单例模式" 
+                        data-hash="md5-L&#43;L8bBG4/9OcdVAecN0gug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">单例模式</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 YC奕晨
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://zhichenf.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://zhichenf.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+
+<style>
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    function initTocHide() {
+        
+        let toc = document.querySelector(".widget--toc");
+        if (!toc) {
+            return;
+        }
+        
+        window.addEventListener('scroll', function() {
+            
+            let currentLi = document.querySelector(".active-class");
+            if (!currentLi) {
+                return
+            }
+            
+            let elementsByClassName = document.querySelectorAll(".open");
+            if (elementsByClassName.length > 0) {
+                elementsByClassName.forEach((ul) => {
+                    ul.classList.remove("open")
+                })
+            }
+            
+            if (currentLi.children.length > 1) {
+                currentLi.children[1].classList.add("open")
+            }
+            
+            let ul = currentLi.parentElement;
+            do {
+                ul.classList.add("open");
+                ul = ul.parentElement.parentElement
+            } while (ul !== undefined && (ul.localName === 'ul' || ul.localName === 'ol'))
+        });
+    }
+    initTocHide()
+</script>
+
+<script>
+	const cssPath = "https://zhichenf.github.io/waifu/waifu.css"
+	const waifuTipsJsonPath = "https://zhichenf.github.io/waifu/waifu-tips.json"
+	
+	const live2d_path = "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/";
+	
+
+	
+	function loadExternalResource(url, type) {
+		return new Promise((resolve, reject) => {
+			let tag;
+
+			if (type === "css") {
+				tag = document.createElement("link");
+				tag.rel = "stylesheet";
+				tag.href = url;
+			}
+			else if (type === "js") {
+				tag = document.createElement("script");
+				tag.src = url;
+			}
+			if (tag) {
+				tag.onload = () => resolve(url);
+				tag.onerror = () => reject(url);
+				document.head.appendChild(tag);
+			}
+		});
+	}
+
+	
+	if (screen.width >= 768) {
+		Promise.all([
+			loadExternalResource(cssPath, "css"),
+			loadExternalResource(live2d_path + "live2d.min.js", "js"),
+			loadExternalResource(live2d_path + "waifu-tips.js", "js")
+		]).then(() => {
+			
+			initWidget({
+				waifuPath: waifuTipsJsonPath,
+				
+				cdnPath: "https://cdn.jsdelivr.net/gh/zhichenf/static-resource@v1.0.0",
+				
+				tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
+			});
+		});
+	}
+</script>
+
+    </body>
+</html>
