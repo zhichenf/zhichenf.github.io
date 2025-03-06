@@ -10,7 +10,7 @@
 <meta property='og:description' content="介绍了模板方法模式和策略模式">
 <meta property='og:url' content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/'>
 <meta property='og:site_name' content='奕晨&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-01T00:00:00&#43;00:00'/><meta property='og:image' content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-03-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24.jpg' />
 <meta name="twitter:title" content="模板方法和策略模式">
 <meta name="twitter:description" content="介绍了模板方法模式和策略模式"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24.jpg' />
@@ -342,7 +342,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-03-01</time>
+                <time class="article-time--published">2025-03-06</time>
             </div>
         
 
@@ -371,7 +371,7 @@
 <li>公布成绩（不要这样做！！！不要打击学生的自尊心）</li>
 </ul>
 </li>
-<li>我们必须严格按照学校的要求来做，但是我们可以通过不通的方法来完成学校的要求
+<li>我们必须严格按照学校的要求来做，但是我们可以通过不同的方法来完成学校的要求
 <ul>
 <li>对于登记到电脑上
 <ul>
@@ -484,7 +484,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>上面的模板函数给出了四个step，其中step2已经被模板方法写死了，你只能这么做（非虚函数），但是有些step模板没有实现（纯虚函数），给了你自由度选择自己的操作方式。</li>
+<li>上面的模板函数给出了四个step，其中step2已经被模板方法写死了，你只能这么做（非虚函数），但是有些step方法没有实现（纯虚函数），给了你自由度选择自己的操作方式。</li>
 <li>我们可以看到有一个step4钩子操作，这个构造操作在基类里面通常是个空操作，用来说明在这个地方你可以选择进行一些操作来进行优化，但是如果你优化也ok，这取决与你自己的意愿。</li>
 <li>这样用户就可以定义派生类来继承基类，重写方法来决定一要用什么具体的步骤，你也可以重写上面step4操作进行操作上的一些扩展。</li>
 </ul>
