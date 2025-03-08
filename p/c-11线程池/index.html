@@ -695,7 +695,6 @@
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#ifndef THREAD_POOL_H_
@@ -710,7 +709,6 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ThreadPool</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">Task</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">()</span><span class="o">&gt;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">friend</span> <span class="k">class</span> <span class="nc">WorkThread</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ThreadPool</span><span class="p">(</span><span class="n">size_t</span> <span class="n">thread_num</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">que_size</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">ThreadPool</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
