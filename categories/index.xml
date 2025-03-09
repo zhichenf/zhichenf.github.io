@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>YC奕晨</copyright>
-        <lastBuildDate>Sat, 08 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 09 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>开发工具</title>
+        <link>https://zhichenf.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
+        <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhichenf.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2.jpg" alt="Featured image of post 开发工具" /&gt;</description>
+        </item>
+        <item>
         <title>设计模式</title>
         <link>https://zhichenf.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
         <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
@@ -30,14 +38,6 @@
         
         <guid>https://zhichenf.github.io/categories/c&#43;&#43;%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</guid>
         <description>&lt;img src="https://zhichenf.github.io/categories/c&#43;&#43;%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/2.jpg" alt="Featured image of post C&#43;&#43;并发编程" /&gt;</description>
-        </item>
-        <item>
-        <title>开发工具</title>
-        <link>https://zhichenf.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</link>
-        <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://zhichenf.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/2.jpg" alt="Featured image of post 开发工具" /&gt;</description>
         </item>
         <item>
         <title>数据结构和算法</title>
