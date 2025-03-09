@@ -29,14 +29,14 @@
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init		&lt;span class=&#34;c1&#34;&gt;# 在本地创建一个空仓库&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone 远程地址		&lt;span class=&#34;c1&#34;&gt;# 创建远程服务器已经存在的目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone 远程地址		&lt;span class=&#34;c1&#34;&gt;# 从远程服务器克隆仓库&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;新建仓库后生成.git文件，就是仓库&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;工作区域和文件状态&#34;&gt;工作区域和文件状态
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index_pic/image-20250308225211790.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/pic/image-20250308225211790.png&#34;
 	
 	
 	
@@ -46,7 +46,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index_pic/image-20250308225236855.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/pic/image-20250308225236855.png&#34;
 	
 	
 	
@@ -208,7 +208,7 @@
 &lt;li&gt;涉及身份、密码、口令、密钥等敏感信息文件&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;对于已经在版本库中的文件，./gitignore文件不起作用，需要使用git rm &amp;ndash;cached命名取消跟踪文件，并从告知暂存区删除文件&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;对于已经在版本库中的文件，./gitignore文件不起作用，需要使用git rm &amp;ndash;cached命令取消跟踪文件，并告知暂存区删除文件&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;远程仓库&#34;&gt;远程仓库
 &lt;/h2&gt;&lt;h3 id=&#34;配置ssh&#34;&gt;配置ssh
 &lt;/h3&gt;&lt;ul&gt;
@@ -342,7 +342,7 @@
 &lt;/div&gt;&lt;h3 id=&#34;rebase操作&#34;&gt;rebase操作
 &lt;/h3&gt;&lt;p&gt;执行rebase会把分支变为一条直线&lt;/p&gt;
 &lt;p&gt;找两分支的公共祖先&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index_pic/image-20250309104029431.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/pic/image-20250309104029431.png&#34;
 	
 	
 	
@@ -369,7 +369,7 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;git模型&#34;&gt;git模型
 &lt;/h2&gt;&lt;h3 id=&#34;gitflow模型&#34;&gt;gitFlow模型
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index_pic/image-20250309110455568.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/pic/image-20250309110455568.png&#34;
 	
 	
 	
@@ -382,7 +382,7 @@
 &lt;ul&gt;
 &lt;li&gt;Master和Develop为主分支，长期存在；其他分支为辅助分支，合并完要删除，具体流程如下图所示&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index_pic/image-20250309110637070.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/pic/image-20250309110637070.png&#34;
 	
 	
 	
@@ -396,7 +396,7 @@
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;自己创建分支修改后发出合并请求&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/index_pic/image-20250309110749110.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/pic/image-20250309110749110.png&#34;
 	
 	
 	

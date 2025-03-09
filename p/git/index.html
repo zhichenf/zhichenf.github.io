@@ -392,14 +392,14 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git init		<span class="c1"># 在本地创建一个空仓库</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">git clone 远程地址		<span class="c1"># 创建远程服务器已经存在的目录</span>
+</span></span><span class="line"><span class="cl">git clone 远程地址		<span class="c1"># 从远程服务器克隆仓库</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>新建仓库后生成.git文件，就是仓库</li>
 </ul>
 <h3 id="工作区域和文件状态">工作区域和文件状态
-</h3><p><img src="/index_pic/image-20250308225211790.png"
+</h3><p><img src="/pic/image-20250308225211790.png"
 	
 	
 	
@@ -409,7 +409,7 @@
 	
 	
 ></p>
-<p><img src="/index_pic/image-20250308225236855.png"
+<p><img src="/pic/image-20250308225236855.png"
 	
 	
 	
@@ -571,7 +571,7 @@
 <li>涉及身份、密码、口令、密钥等敏感信息文件</li>
 </ul>
 <blockquote>
-<p>对于已经在版本库中的文件，./gitignore文件不起作用，需要使用git rm &ndash;cached命名取消跟踪文件，并从告知暂存区删除文件</p></blockquote>
+<p>对于已经在版本库中的文件，./gitignore文件不起作用，需要使用git rm &ndash;cached命令取消跟踪文件，并告知暂存区删除文件</p></blockquote>
 <h2 id="远程仓库">远程仓库
 </h2><h3 id="配置ssh">配置ssh
 </h3><ul>
@@ -705,7 +705,7 @@
 </div><h3 id="rebase操作">rebase操作
 </h3><p>执行rebase会把分支变为一条直线</p>
 <p>找两分支的公共祖先</p>
-<p><img src="/index_pic/image-20250309104029431.png"
+<p><img src="/pic/image-20250309104029431.png"
 	
 	
 	
@@ -732,7 +732,7 @@
 </ul>
 <h2 id="git模型">git模型
 </h2><h3 id="gitflow模型">gitFlow模型
-</h3><p><img src="/index_pic/image-20250309110455568.png"
+</h3><p><img src="/pic/image-20250309110455568.png"
 	
 	
 	
@@ -745,7 +745,7 @@
 <ul>
 <li>Master和Develop为主分支，长期存在；其他分支为辅助分支，合并完要删除，具体流程如下图所示</li>
 </ul>
-<p><img src="/index_pic/image-20250309110637070.png"
+<p><img src="/pic/image-20250309110637070.png"
 	
 	
 	
@@ -759,7 +759,7 @@
 </h3><ul>
 <li>自己创建分支修改后发出合并请求</li>
 </ul>
-<p><img src="/index_pic/image-20250309110749110.png"
+<p><img src="/pic/image-20250309110749110.png"
 	
 	
 	
