@@ -13,7 +13,7 @@
         <pubDate>Thu, 10 Apr 2025 00:00:00 +0000</pubDate>
         
         <guid>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/25.jpg" alt="Featured image of post 打开模板元编程的大门" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <description>&lt;img src="https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/26.jpg" alt="Featured image of post 打开模板元编程的大门" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;​	今天看了Cpp con 2014 - Walter E. Brown博士讲的有关模板元编程的讲座，感觉打开了新世界的大门，以前虽然也看了些和模板有关的代码，但一直没有系统的了解过，而今天看完讲座，感觉串通了很多东西，也开始了解模板元编程。所以写者想在这里记录一些讲座上的代码，以及自己的一些思考。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;模板元编程tmp&#34;&gt;模板元编程(TMP)
