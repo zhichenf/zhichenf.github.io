@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="模板元编程">
+<title>打开模板元编程的大门</title>
+
+<link rel='canonical' href='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.8d934ad4bc016d1815207ceb7e43fb3eb6fedac5e3d051f641d6ce55cf579125.css"><meta property='og:title' content="打开模板元编程的大门">
+<meta property='og:description' content="模板元编程">
+<meta property='og:url' content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/'>
+<meta property='og:site_name' content='奕晨&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-10T00:00:00&#43;00:00'/><meta property='og:image' content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/25.jpg' />
+<meta name="twitter:title" content="打开模板元编程的大门">
+<meta name="twitter:description" content="模板元编程"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/25.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/qyc_hu_2055393e78872625.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">👻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">奕晨&#39;s blog</a></h1>
+            <h2 class="site-description">欢迎来到我的博客，在这里让我们一起体验编程的奥妙！</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1767346082?spm_id_from=333.1007.0.0'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z"></path> <path d="M8 3l2 3"></path> <path d="M16 3l-2 3"></path> <path d="M9 13v-2"></path> <path d="M15 11v2"></path> </svg> 
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/zhichenf'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E4%BB%8B%E7%BB%8D/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>介绍</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#模板元编程tmp">模板元编程(TMP)</a></li>
+    <li><a href="#模板也可以递归">模板也可以递归</a></li>
+    <li><a href="#type">::type</a></li>
+    <li><a href="#sfinae">SFINAE</a></li>
+    <li><a href="#value">::value</a></li>
+    <li><a href="#更多的类型判断">更多的类型判断</a></li>
+    <li><a href="#decltype和declval">decltype和declval</a></li>
+    <li><a href="#void_t">void_t</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/">
+                <img src="/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/25_hu_f1758c2bb3b63a7b.jpg"
+                        srcset="/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/25_hu_f1758c2bb3b63a7b.jpg 800w, /p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/25_hu_87a65abb867ddc39.jpg 1600w"
+                        width="800" 
+                        height="456" 
+                        loading="lazy"
+                        alt="Featured image of post 打开模板元编程的大门" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c&#43;&#43;/" style="background-color: #2a9d8f; color: #fff;">
+                C&#43;&#43;
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/">打开模板元编程的大门</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            模板元编程
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-04-10</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="引言">引言
+</h2><blockquote>
+<p>​	今天看了Cpp con 2014 - Walter E. Brown博士讲的有关模板元编程的讲座，感觉打开了新世界的大门，以前虽然也看了些和模板有关的代码，但一直没有系统的了解过，而今天看完讲座，感觉串通了很多东西，也开始了解模板元编程。所以写者想在这里记录一些讲座上的代码，以及自己的一些思考。</p></blockquote>
+<h2 id="模板元编程tmp">模板元编程(TMP)
+</h2><p>​	普通的编程操作的对象都是数据，而在模板元编程当中，我们可以对类型进行操作。就拿普通函数和元函数进行比较，元函数不在是一个普通函数的形式，通常是一个模板类。普通函数的参数对应了元函数的函数模板，操作的对象也由数据变成了类型。普通函数的返回值与元函数中通常定义公开的type类型和value值形成了对应。</p>
+<h2 id="模板也可以递归">模板也可以递归
+</h2><p>​	以前一直以为，递归只能再函数中实现，没想到也能在模板中进行递归。不过再一想，这里用到都是元函数，那么可以用递归也合理了很多。下面两个例子展现了两种递归的实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">yc</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">// 计算gcd
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 在主模板中调用了递归，特化作为递归出口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="kt">unsigned</span> <span class="n">M</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">N</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">gcd</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">gcd</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="o">%</span><span class="n">N</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="n">M</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">gcd</span><span class="o">&lt;</span><span class="n">M</span><span class="p">,</span><span class="mi">0</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static_assert</span><span class="p">(</span><span class="n">M</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">M</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// rank, rank的主要作用是返回数组的维度，rank&lt;int[10][20][30]&gt;::value 的值是3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 在特化中调用了递归，主模板作为递归出口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">rank</span> <span class="p">{</span> <span class="k">static</span> <span class="k">constexpr</span> <span class="n">size_t</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0u</span><span class="p">;};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">N</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">rank</span><span class="o">&lt;</span><span class="n">U</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">size_t</span> <span class="k">const</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">1u</span> <span class="o">+</span> <span class="n">rank</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="type">::type
+</h2><p>​	模板元编程的操作对象是类型，下面就来看看对类型的操作吧。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">yc</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// remove_const
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">remove_const</span> <span class="p">{</span><span class="k">using</span> <span class="n">type</span> <span class="o">=</span> <span class="n">T</span><span class="p">;};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">remove_const</span><span class="o">&lt;</span><span class="n">T</span> <span class="k">const</span><span class="o">&gt;</span> <span class="p">{</span><span class="k">using</span> <span class="n">type</span> <span class="o">=</span> <span class="n">T</span><span class="p">;};</span>	<span class="c1">// 特化去除类型的const属性，下面去除volatile也是如此
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 一些元函数可以继承type_is, 保证元函数的一些规范，一定会有名为type的类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">type_is</span> <span class="p">{</span> <span class="k">using</span> <span class="n">type</span> <span class="o">=</span> <span class="n">T</span><span class="p">;};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">remove_volatile</span> <span class="o">:</span> <span class="n">type_is</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">remove_volatile</span><span class="o">&lt;</span><span class="n">U</span> <span class="k">volatile</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">type_is</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// IF编译器决定调用哪一个,因为是模板，所以T和F可以是任意类型，包括函数，类。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 可以通过这种方式，让编译器选择将要执行的函数类型，以及将要继承的基类。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">IF</span> <span class="o">:</span> <span class="n">type_is</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">F</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">IF</span><span class="o">&lt;</span><span class="nb">false</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">F</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">type_is</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="sfinae">SFINAE
+</h2><p>​     模板实例化需要经过替换的过程，在替换的过程中，如果失败，并不是错误，而是会放弃这次替换。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">yc</span><span class="p">{</span>	
+</span></span><span class="line"><span class="cl">	<span class="c1">// enable_if， SFINAE的实用工具
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">enable_if</span> <span class="o">:</span> <span class="n">type_is</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">enable_if</span><span class="o">&lt;</span><span class="nb">false</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{};</span>   <span class="c1">// 当传入为false的时候，不给::type，用来后面enable_if_t发生SFINAE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="kt">bool</span> <span class="n">b</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">enable_if_t</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">enable_if</span><span class="o">&lt;</span><span class="n">b</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">;</span>	<span class="c1">// 通常后缀_t 表示 ::type
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//SFINAE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 当条件是false的时候，enable_if_t会发生错误，因为enable_if没有type类型，发生SFINAE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">enable_if_t</span><span class="o">&lt;</span><span class="n">is_integral_v</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">enable_if_t</span><span class="o">&lt;</span><span class="n">is_floating_point_v</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">val</span><span class="p">;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="value">::value
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">yc</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// ::value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span> <span class="n">v</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">integral_constant</span> <span class="p">{</span>	<span class="c1">// 这里T类型位置，考虑换一个名字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">static</span> <span class="k">constexpr</span> <span class="n">T</span> <span class="n">value</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// 允许将integral_constant 转为T类型 或者调用获得类型T
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">constexpr</span> <span class="k">explicit</span> <span class="k">operator</span> <span class="nf">T</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="n">value</span><span class="p">;</span> <span class="p">}</span>    
+</span></span><span class="line"><span class="cl">        <span class="k">constexpr</span> <span class="n">T</span> <span class="nf">operator</span><span class="p">()()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 重构rank
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">rank2</span> <span class="o">:</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="mi">0u</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">N</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">rank2</span><span class="o">&lt;</span><span class="n">U</span><span class="p">[</span><span class="n">N</span><span class="p">]</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="mi">1u</span> <span class="o">+</span> <span class="n">rank2</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 之前的rank没有考虑过的情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">rank2</span><span class="o">&lt;</span><span class="n">U</span><span class="p">[]</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="mi">1u</span> <span class="o">+</span> <span class="n">rank2</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 一些模板aliases
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="kt">bool</span> <span class="n">b</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">bool_constant</span> <span class="o">=</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">b</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">true_type</span> <span class="o">=</span> <span class="n">bool_constant</span><span class="o">&lt;</span><span class="nb">true</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">false_type</span> <span class="o">=</span> <span class="n">bool_constant</span><span class="o">&lt;</span><span class="nb">false</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="更多的类型判断">更多的类型判断
+</h2><p>​	在这里补充一下模板实例化中有关特化的执行过程</p>
+<p>​	在实例化中，编译器会根据主模板，将所有类型确定下来，然后去特化中找严格匹配的类型，如果特化中没有严格匹配的类型，就不会走特化版本，而是走主模板的版本。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">yc</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 判断一个类型是否是void类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 写者在这里进行了总结，一般主模板都给一个false的value，在特化中将满足条件的特化给予一个为true的value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">is_void</span> <span class="o">:</span> <span class="n">false_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;&gt;</span> <span class="k">struct</span> <span class="nc">is_void</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">true_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;&gt;</span> <span class="k">struct</span> <span class="nc">is_void</span><span class="o">&lt;</span><span class="kt">void</span> <span class="k">const</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">true_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;&gt;</span> <span class="k">struct</span> <span class="nc">is_void</span><span class="o">&lt;</span><span class="kt">void</span> <span class="k">volatile</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">true_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;&gt;</span> <span class="k">struct</span> <span class="nc">is_void</span><span class="o">&lt;</span><span class="kt">void</span> <span class="k">volatile</span> <span class="k">const</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">true_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 判断两个类型是否相等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">is_same</span> <span class="o">:</span> <span class="n">false_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="nc">is_same</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">true_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">remove_cv</span> <span class="o">=</span> <span class="n">remove_volatile</span><span class="o">&lt;</span><span class="n">remove_const_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">remove_cv_t</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">remove_cv</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 重构is_void2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">is_void2</span> <span class="o">=</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">remove_cv_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">void</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 判断类型是不是后面类型列表里面的类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">P0ToN</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">is_one_of</span><span class="p">;</span>	<span class="c1">// 主模板声明，用来确定类型，而下面的特化都一定能走到，所以不用写主模板
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">is_one_of</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">false_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">P1ToN</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">is_one_of</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">P1ToN</span><span class="p">...</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">true_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">P0</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">P1toN</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">is_one_of</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">P0</span><span class="p">,</span> <span class="n">P1toN</span><span class="p">...</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">is_one_of</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">P1toN</span><span class="p">...</span><span class="o">&gt;</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 模板参数列进行递归操作很常见，但这里尽然进行了一个递归的继承，递归也能玩这么六，太精彩了~~~
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 重构is_void3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">is_void3</span> <span class="o">=</span> <span class="n">is_one_of</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">void</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="p">,</span> <span class="kt">void</span> <span class="k">volatile</span><span class="p">,</span> <span class="kt">void</span> <span class="k">volatile</span> <span class="k">const</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="decltype和declval">decltype和declval
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">yc</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// decltype 和 declval
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// declval 假装给了这个类型的一个值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 下面假装是一个函数调用，但是是编译期并不会实际执行函数调用，只是为了找到这个函数来获取返回值类型。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">decltype</span><span class="p">(</span><span class="n">foo</span><span class="p">(</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()))</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// declval&lt;T&amp;&gt;() 给的是一个右值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// is_copy_assignable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">is_copy_assignable</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="p">,</span> <span class="k">typename</span> <span class="o">=</span> <span class="k">decltype</span><span class="p">(</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&amp;&gt;</span><span class="p">()</span> <span class="o">=</span> <span class="n">declval</span><span class="o">&lt;</span><span class="n">U</span> <span class="k">const</span><span class="o">&amp;&gt;</span><span class="p">())</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">true_type</span> <span class="n">try_assignment</span><span class="p">(</span><span class="n">U</span><span class="o">&amp;&amp;</span><span class="p">);</span>	<span class="c1">// 可能会触发SFINAE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">false_type</span> <span class="nf">try_assignment</span><span class="p">(...);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">using</span> <span class="n">type</span> <span class="o">=</span> <span class="k">decltype</span><span class="p">(</span><span class="n">try_assignment</span><span class="p">(</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="void_t">void_t
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">namespace</span> <span class="n">yc</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// void_t
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">void_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 查看元函数是否有type成员
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 为什么typename=void 必须是void, 改成int会发生什么？
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  	<span class="c1">// 改成int,编译器先看主模板，实例化为has_type_member&lt;SomeType, int&gt;，再尝试匹配偏特化会失败。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 特化类型必须精确匹配，才能走特化版本，否则不会
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 如果想要改成int,上面的也要改成void_t = int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">,</span> <span class="k">typename</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span>     <span class="c1">// 这里的void一定要和void_t里的类型相匹配，选择void是一种实现方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">struct</span> <span class="nc">has_type_member</span> <span class="o">:</span> <span class="n">false_type</span> <span class="p">{};</span> <span class="c1">// 类型匹配优先走偏特化，即使这两个看起来一样
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">has_type_member</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">void_t</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">type</span><span class="o">&gt;&gt;</span> <span class="o">:</span> <span class="n">true_type</span><span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// is_copy_assignable优化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">using</span> <span class="n">copy_assignable_t</span> <span class="o">=</span> <span class="k">decltype</span><span class="p">(</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&gt;</span><span class="p">()</span> <span class="o">=</span> <span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span> <span class="k">const</span><span class="o">&amp;&gt;</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// T const&amp; -&gt; T&amp;&amp; 就可以实现能否进行移动的判断
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">is_copy_assignable2</span> <span class="o">:</span> <span class="n">false_type</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="nc">is_copy_assignable2</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">void_t</span><span class="o">&lt;</span><span class="n">copy_assignable_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;&gt;</span> <span class="o">:</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">copy_assignable_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span><span class="n">T</span><span class="o">&amp;&gt;</span><span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 拷贝后的类型应当是T&amp;, 所以需要和T&amp;比较是否类型相等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/25.b5e1f1b205d59e364e40f6f71ac9afbf_hu_54f1505d193b4e9.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 打开模板元编程的大门"
+                        data-key="模板元编程" 
+                        data-hash="md5-teHxsgXVnjZOQPb3Gsmvvw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">打开模板元编程的大门</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%BA%BF%E7%A8%8B%E5%B1%8F%E9%9A%9C/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%BA%BF%E7%A8%8B%E5%B1%8F%E9%9A%9C/17.a6f3266b2a4aa4b1d8de5d01a615124d_hu_df49341f763a3210.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 线程屏障"
+                        data-key="线程屏障" 
+                        data-hash="md5-pvMmaypKpLHY3l0BphUSTQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">线程屏障</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/25.b5e1f1b205d59e364e40f6f71ac9afbf_hu_54f1505d193b4e9.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 奇异模板"
+                        data-key="奇异模板" 
+                        data-hash="md5-teHxsgXVnjZOQPb3Gsmvvw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">奇异模板</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/sfinae/">
+        
+        
+            <div class="article-image">
+                <img src="/p/sfinae/14.7238ad14b245deb7ef16bdcbc5bd4d1f_hu_94992a15c1230c30.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post SFINAE"
+                        data-key="SFINAE" 
+                        data-hash="md5-cjitFLJF3rfvFr3Lxb1NHw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SFINAE</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/15.2b49650127b1c72de81bd4e1751e16a6_hu_a7c367e082b4088c.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 类型萃取"
+                        data-key="类型萃取" 
+                        data-hash="md5-K0llASexxy3oG9ThdR4Wpg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">类型萃取</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 YC奕晨
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://zhichenf.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://zhichenf.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+
+<style>
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    function initTocHide() {
+        
+        let toc = document.querySelector(".widget--toc");
+        if (!toc) {
+            return;
+        }
+        
+        window.addEventListener('scroll', function() {
+            
+            let currentLi = document.querySelector(".active-class");
+            if (!currentLi) {
+                return
+            }
+            
+            let elementsByClassName = document.querySelectorAll(".open");
+            if (elementsByClassName.length > 0) {
+                elementsByClassName.forEach((ul) => {
+                    ul.classList.remove("open")
+                })
+            }
+            
+            if (currentLi.children.length > 1) {
+                currentLi.children[1].classList.add("open")
+            }
+            
+            let ul = currentLi.parentElement;
+            do {
+                ul.classList.add("open");
+                ul = ul.parentElement.parentElement
+            } while (ul !== undefined && (ul.localName === 'ul' || ul.localName === 'ol'))
+        });
+    }
+    initTocHide()
+</script>
+
+<script>
+	const cssPath = "https://zhichenf.github.io/waifu/waifu.css"
+	const waifuTipsJsonPath = "https://zhichenf.github.io/waifu/waifu-tips.json"
+	
+	const live2d_path = "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/";
+	
+
+	
+	function loadExternalResource(url, type) {
+		return new Promise((resolve, reject) => {
+			let tag;
+
+			if (type === "css") {
+				tag = document.createElement("link");
+				tag.rel = "stylesheet";
+				tag.href = url;
+			}
+			else if (type === "js") {
+				tag = document.createElement("script");
+				tag.src = url;
+			}
+			if (tag) {
+				tag.onload = () => resolve(url);
+				tag.onerror = () => reject(url);
+				document.head.appendChild(tag);
+			}
+		});
+	}
+
+	
+	if (screen.width >= 768) {
+		Promise.all([
+			loadExternalResource(cssPath, "css"),
+			loadExternalResource(live2d_path + "live2d.min.js", "js"),
+			loadExternalResource(live2d_path + "waifu-tips.js", "js")
+		]).then(() => {
+			
+			initWidget({
+				waifuPath: waifuTipsJsonPath,
+				
+				cdnPath: "https://cdn.jsdelivr.net/gh/zhichenf/static-resource@v1.0.0",
+				
+				tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
+			});
+		});
+	}
+</script>
+
+    </body>
+</html>
