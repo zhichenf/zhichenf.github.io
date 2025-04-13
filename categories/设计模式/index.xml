@@ -1195,7 +1195,7 @@
 &lt;p&gt;2025-4-13更新&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;上面那种模式还会涉及一些内存顺序的问题，instance = new Singleton(); 会被分为三个步骤，分配内存，构造，将地址传给instance。但是有时候指令重排会将三个步骤重排位分配内存，将地址传给instance，构造，这时候当两个线程按下面流程进行getInstance()就会发生问题。&lt;/p&gt;
+&lt;p&gt;上面那种模式还会涉及一些内存顺序的问题，instance = new Singleton(); 会被分为三个步骤，分配内存，构造，将地址传给instance。但是有时候指令重排会将三个步骤重排为分配内存，将地址传给instance，构造，这时候当两个线程按下面流程进行getInstance()就会发生问题。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;table&gt;
