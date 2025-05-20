@@ -7,21 +7,21 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>YC奕晨</copyright>
-        <lastBuildDate>Mon, 12 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 20 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>C&#43;&#43;</title>
+        <link>https://zhichenf.github.io/categories/c&#43;&#43;/</link>
+        <pubDate>Tue, 20 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhichenf.github.io/categories/c&#43;&#43;/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/categories/c&#43;&#43;/1.jpg" alt="Featured image of post C&#43;&#43;" /&gt;</description>
+        </item>
+        <item>
         <title>cuda</title>
         <link>https://zhichenf.github.io/categories/cuda/</link>
         <pubDate>Mon, 12 May 2025 00:00:00 +0000</pubDate>
         
         <guid>https://zhichenf.github.io/categories/cuda/</guid>
         <description>&lt;img src="https://zhichenf.github.io/categories/cuda/01.jpg" alt="Featured image of post cuda" /&gt;</description>
-        </item>
-        <item>
-        <title>C&#43;&#43;</title>
-        <link>https://zhichenf.github.io/categories/c&#43;&#43;/</link>
-        <pubDate>Thu, 10 Apr 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://zhichenf.github.io/categories/c&#43;&#43;/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/categories/c&#43;&#43;/1.jpg" alt="Featured image of post C&#43;&#43;" /&gt;</description>
         </item>
         <item>
         <title>设计模式</title>
