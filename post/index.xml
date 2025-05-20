@@ -637,11 +637,11 @@
         </item>
         <item>
         <title>打开模板元编程的大门</title>
-        <link>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/</link>
+        <link>https://zhichenf.github.io/p/open_the_door_of_the_tmp/</link>
         <pubDate>Thu, 10 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/26.jpg" alt="Featured image of post 打开模板元编程的大门" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/open_the_door_of_the_tmp/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/open_the_door_of_the_tmp/26.jpg" alt="Featured image of post 打开模板元编程的大门" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;​	今天看了Cpp con 2014 - Walter E. Brown博士讲的有关模板元编程的讲座，感觉打开了新世界的大门，以前虽然也看了些和模板有关的代码，但一直没有系统的了解过，而今天看完讲座，感觉串通了很多东西，也开始了解模板元编程。所以写者想在这里记录一些讲座上的代码，以及自己的一些思考。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;模板元编程tmp&#34;&gt;模板元编程(TMP)
@@ -1082,11 +1082,11 @@
         </item>
         <item>
         <title>线程屏障</title>
-        <link>https://zhichenf.github.io/p/%E7%BA%BF%E7%A8%8B%E5%B1%8F%E9%9A%9C/</link>
+        <link>https://zhichenf.github.io/p/latch_and_barrier/</link>
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E7%BA%BF%E7%A8%8B%E5%B1%8F%E9%9A%9C/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E7%BA%BF%E7%A8%8B%E5%B1%8F%E9%9A%9C/17.jpg" alt="Featured image of post 线程屏障" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/latch_and_barrier/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/latch_and_barrier/17.jpg" alt="Featured image of post 线程屏障" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;线程屏障&lt;/strong&gt;（Thread Barrier）是一种同步机制，用于让一组线程在某个点上等待，直到所有线程都到达该点后再继续执行。屏障通常用于多线程编程中，确保所有线程在某个阶段完成后再进入下一个阶段。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdlatch&#34;&gt;std::latch
@@ -1325,11 +1325,11 @@
         </item>
         <item>
         <title>奇异模板</title>
-        <link>https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/</link>
+        <link>https://zhichenf.github.io/p/curiously_recurring_templage_pattern/</link>
         <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/25.jpg" alt="Featured image of post 奇异模板" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/curiously_recurring_templage_pattern/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/curiously_recurring_templage_pattern/25.jpg" alt="Featured image of post 奇异模板" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;奇异递归模板模式（Curiously Recurring Template Pattern，简称 CRTP），也被称为奇异模板，是 C++ 中的一种模板编程技术。它允许基类使用派生类的类型信息，实现了一种编译时多态。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;奇异递归模板模式&#34;&gt;奇异递归模板模式
@@ -2079,11 +2079,11 @@
         </item>
         <item>
         <title>观察者模式</title>
-        <link>https://zhichenf.github.io/p/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+        <link>https://zhichenf.github.io/p/observer_pattern/</link>
         <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/19.jpg" alt="Featured image of post 观察者模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/observer_pattern/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/observer_pattern/19.jpg" alt="Featured image of post 观察者模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;观察者模式（Observer Pattern）是一种行为设计模式，它定义了对象之间的一对多依赖关系，使得当一个对象的状态发生改变时，所有依赖于它的对象都会自动收到通知并更新。这种模式通常用于实现事件处理系统、发布-订阅模型等。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;观察者模式&#34;&gt;观察者模式
@@ -2363,11 +2363,11 @@
         </item>
         <item>
         <title>模板方法和策略模式</title>
-        <link>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+        <link>https://zhichenf.github.io/p/template_method_and_strategy/</link>
         <pubDate>Thu, 06 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24.jpg" alt="Featured image of post 模板方法和策略模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/template_method_and_strategy/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/template_method_and_strategy/24.jpg" alt="Featured image of post 模板方法和策略模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;模板方法模式&lt;/strong&gt;和&lt;strong&gt;策略模式&lt;/strong&gt;都是行为设计模式，它们的目标都是通过封装算法来提高代码的灵活性和可维护性。然而，它们的实现方式和适用场景有所不同。下面就会介绍这两种设计模式&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;模板方法模式&#34;&gt;模板方法模式
@@ -2744,11 +2744,11 @@
         </item>
         <item>
         <title>单例模式</title>
-        <link>https://zhichenf.github.io/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+        <link>https://zhichenf.github.io/p/singleton_pattern/</link>
         <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/18.jpg" alt="Featured image of post 单例模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/singleton_pattern/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/singleton_pattern/18.jpg" alt="Featured image of post 单例模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;单例设计模式（Singleton Design Pattern）是一种创建型设计模式，它确保一个类只有一个实例，并提供一个全局访问点来获取该实例。这种模式常用于需要控制资源访问、配置管理或共享资源等场景。&lt;/p&gt;
 &lt;p&gt;本文主要介绍单例设计模式的两种实现方式及其特点。&lt;/p&gt;&lt;/blockquote&gt;
@@ -3282,11 +3282,11 @@
         </item>
         <item>
         <title>类型萃取</title>
-        <link>https://zhichenf.github.io/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/</link>
+        <link>https://zhichenf.github.io/p/type_traits/</link>
         <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/15.jpg" alt="Featured image of post 类型萃取" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/type_traits/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/type_traits/15.jpg" alt="Featured image of post 类型萃取" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;在C++中，类型萃取（Type Traits）是一种在编译时获取和操作类型信息的机制。它通过模板元编程技术实现，允许开发者根据类型的特性进行条件编译或执行不同的代码路径。类型萃取类通常定义在&lt;code&gt;&amp;lt;type_traits&amp;gt;&lt;/code&gt;头文件中。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;常见类型萃取类&#34;&gt;常见类型萃取类
@@ -5822,11 +5822,11 @@
         </item>
         <item>
         <title>C&#43;&#43;异步编程工具 (二)</title>
-        <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%BA%8C/</link>
+        <link>https://zhichenf.github.io/p/shared_future/</link>
         <pubDate>Fri, 24 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%BA%8C/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%BA%8C/13.jpg" alt="Featured image of post C&#43;&#43;异步编程工具 (二)" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/shared_future/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/shared_future/13.jpg" alt="Featured image of post C&#43;&#43;异步编程工具 (二)" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;std::shared_future&lt;/code&gt; 是 C++ 标准库中的一个类，用于表示可以共享的异步计算结果。它与 &lt;code&gt;std::future&lt;/code&gt; 类似，但允许多个线程共享同一个异步结果，而 &lt;code&gt;std::future&lt;/code&gt; 只能被单个线程访问。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdshared_future&#34;&gt;std::shared_future
@@ -5947,11 +5947,11 @@
         </item>
         <item>
         <title>C&#43;&#43;异步编程工具 (一)</title>
-        <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%B8%80/</link>
+        <link>https://zhichenf.github.io/p/future_wait_for_event/</link>
         <pubDate>Thu, 23 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%B8%80/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%B8%80/9.jpg" alt="Featured image of post C&#43;&#43;异步编程工具 (一)" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/future_wait_for_event/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/future_wait_for_event/9.jpg" alt="Featured image of post C&#43;&#43;异步编程工具 (一)" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;std::async&lt;/code&gt;、&lt;code&gt;std::packaged_task&lt;/code&gt; 和 &lt;code&gt;std::promise&lt;/code&gt; 是C++11引入的三个用于异步编程的工具，它们都与 &lt;code&gt;std::future&lt;/code&gt; 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&amp;lt;future&amp;gt;头文件中声明。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdfuture&#34;&gt;std::future
@@ -6451,11 +6451,11 @@
         </item>
         <item>
         <title>CMake创建c&#43;&#43;项目简明教程</title>
-        <link>https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</link>
+        <link>https://zhichenf.github.io/p/simple_cmake/</link>
         <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/12.jpg" alt="Featured image of post CMake创建c&#43;&#43;项目简明教程" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/simple_cmake/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/simple_cmake/12.jpg" alt="Featured image of post CMake创建c&#43;&#43;项目简明教程" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;CMake 是一个跨平台的构建系统生成器，用于自动化构建、测试和打包软件项目的过程。CMake 通过一系列源代码文件和配置设置，生成平台特定的构建文件（例如 Makefile、Visual Studio 项目文件等）。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;cmake语法&#34;&gt;CMake语法
@@ -6842,10 +6842,10 @@
 &lt;li&gt;在这个简单的CMake项目中，有如下的项目结构&lt;/li&gt;
 &lt;li&gt;整个项目只有一个CMakeLists.txt，所有的源文件和头文件都放在项目目录中，bin中存放的是最终的可执行程序。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220949324.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/simple_cmake/picture/image-20250110220949324.png&#34;
 	width=&#34;540&#34;
 	height=&#34;524&#34;
-	srcset=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220949324_hu_32e82ceee6a52f40.png 480w, https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220949324_hu_9e3d8f0462b5d1e8.png 1024w&#34;
+	srcset=&#34;https://zhichenf.github.io/p/simple_cmake/picture/image-20250110220949324_hu_32e82ceee6a52f40.png 480w, https://zhichenf.github.io/p/simple_cmake/picture/image-20250110220949324_hu_9e3d8f0462b5d1e8.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;简单项目目录结构&#34;
@@ -6885,10 +6885,10 @@
 &lt;li&gt;在这个份文件的CMake项目中，有如下的项目结构&lt;/li&gt;
 &lt;li&gt;整个项目只有一个CMakeLists.txt，src文件夹里面存放的是源文件，include文件夹中存放的是头文件，bin中存放的是最终的可执行程序。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220913038.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/simple_cmake/picture/image-20250110220913038.png&#34;
 	width=&#34;555&#34;
 	height=&#34;491&#34;
-	srcset=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220913038_hu_12a8e9188b74ef6.png 480w, https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110220913038_hu_5e9fbf966e579214.png 1024w&#34;
+	srcset=&#34;https://zhichenf.github.io/p/simple_cmake/picture/image-20250110220913038_hu_12a8e9188b74ef6.png 480w, https://zhichenf.github.io/p/simple_cmake/picture/image-20250110220913038_hu_5e9fbf966e579214.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;分文件编写目录结构&#34;
@@ -6940,10 +6940,10 @@
 &lt;li&gt;在创建共享库的项目中，有如下目录结构&lt;/li&gt;
 &lt;li&gt;注意到bin中多出了libcommon.dll动态链接库文件。同时，main程序在项目目录下，其他.cpp文件存放在了src目录中，头文件存放在了include目录中。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110221848629.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/simple_cmake/picture/image-20250110221848629.png&#34;
 	width=&#34;631&#34;
 	height=&#34;660&#34;
-	srcset=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110221848629_hu_4019ff5cd2f82b11.png 480w, https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250110221848629_hu_12ee6e27897d633f.png 1024w&#34;
+	srcset=&#34;https://zhichenf.github.io/p/simple_cmake/picture/image-20250110221848629_hu_4019ff5cd2f82b11.png 480w, https://zhichenf.github.io/p/simple_cmake/picture/image-20250110221848629_hu_12ee6e27897d633f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;使用共享库目录结构&#34;
@@ -7044,10 +7044,10 @@
 &lt;li&gt;项目有如下目录结构&lt;/li&gt;
 &lt;li&gt;项目文件夹下有一个CmakeLists文件；src文件夹里有一个CmakeLists文件，主程序和几个类的文件夹；同时src中每个类各自的文件夹都包含了CmakeLists，.cpp，.h三个文件&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250112222524977.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://zhichenf.github.io/p/simple_cmake/picture/image-20250112222524977.png&#34;
 	width=&#34;642&#34;
 	height=&#34;595&#34;
-	srcset=&#34;https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250112222524977_hu_ddffcebf39b4fd32.png 480w, https://zhichenf.github.io/p/cmake%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/picture/image-20250112222524977_hu_b0f7b8824c2354e1.png 1024w&#34;
+	srcset=&#34;https://zhichenf.github.io/p/simple_cmake/picture/image-20250112222524977_hu_ddffcebf39b4fd32.png 480w, https://zhichenf.github.io/p/simple_cmake/picture/image-20250112222524977_hu_b0f7b8824c2354e1.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;嵌套调用目录结构&#34;
@@ -7220,11 +7220,11 @@
         </item>
         <item>
         <title>C&#43;&#43;11线程池</title>
-        <link>https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+        <link>https://zhichenf.github.io/p/c-11_thread_pool/</link>
         <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/10.jpg" alt="Featured image of post C&#43;&#43;11线程池" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/c-11_thread_pool/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/c-11_thread_pool/10.jpg" alt="Featured image of post C&#43;&#43;11线程池" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;在C++11之前，标准库并不提供线程相关的支持（如&lt;code&gt;std::thread&lt;/code&gt;、&lt;code&gt;std::mutex&lt;/code&gt;等），因此在C++11之前创建线程池需要依赖于操作系统的线程库或第三方库，如 &lt;strong&gt;POSIX线程（pthread）&lt;/strong&gt; 或 &lt;strong&gt;Boost.Thread&lt;/strong&gt;。而在c++11之后，我们可以使用c++的标准库来实现线程池，从而写出跨平台的线程池。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;线程池简介&#34;&gt;线程池简介

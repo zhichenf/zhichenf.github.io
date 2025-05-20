@@ -9,11 +9,11 @@
         <copyright>YC奕晨</copyright>
         <lastBuildDate>Thu, 10 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>打开模板元编程的大门</title>
-        <link>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/</link>
+        <link>https://zhichenf.github.io/p/open_the_door_of_the_tmp/</link>
         <pubDate>Thu, 10 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E5%85%83%E7%BC%96%E7%A8%8B/26.jpg" alt="Featured image of post 打开模板元编程的大门" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/open_the_door_of_the_tmp/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/open_the_door_of_the_tmp/26.jpg" alt="Featured image of post 打开模板元编程的大门" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;​	今天看了Cpp con 2014 - Walter E. Brown博士讲的有关模板元编程的讲座，感觉打开了新世界的大门，以前虽然也看了些和模板有关的代码，但一直没有系统的了解过，而今天看完讲座，感觉串通了很多东西，也开始了解模板元编程。所以写者想在这里记录一些讲座上的代码，以及自己的一些思考。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;模板元编程tmp&#34;&gt;模板元编程(TMP)
@@ -454,11 +454,11 @@
         </item>
         <item>
         <title>线程屏障</title>
-        <link>https://zhichenf.github.io/p/%E7%BA%BF%E7%A8%8B%E5%B1%8F%E9%9A%9C/</link>
+        <link>https://zhichenf.github.io/p/latch_and_barrier/</link>
         <pubDate>Wed, 19 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E7%BA%BF%E7%A8%8B%E5%B1%8F%E9%9A%9C/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E7%BA%BF%E7%A8%8B%E5%B1%8F%E9%9A%9C/17.jpg" alt="Featured image of post 线程屏障" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/latch_and_barrier/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/latch_and_barrier/17.jpg" alt="Featured image of post 线程屏障" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;线程屏障&lt;/strong&gt;（Thread Barrier）是一种同步机制，用于让一组线程在某个点上等待，直到所有线程都到达该点后再继续执行。屏障通常用于多线程编程中，确保所有线程在某个阶段完成后再进入下一个阶段。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdlatch&#34;&gt;std::latch
@@ -697,11 +697,11 @@
         </item>
         <item>
         <title>奇异模板</title>
-        <link>https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/</link>
+        <link>https://zhichenf.github.io/p/curiously_recurring_templage_pattern/</link>
         <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/25.jpg" alt="Featured image of post 奇异模板" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/curiously_recurring_templage_pattern/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/curiously_recurring_templage_pattern/25.jpg" alt="Featured image of post 奇异模板" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;奇异递归模板模式（Curiously Recurring Template Pattern，简称 CRTP），也被称为奇异模板，是 C++ 中的一种模板编程技术。它允许基类使用派生类的类型信息，实现了一种编译时多态。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;奇异递归模板模式&#34;&gt;奇异递归模板模式
@@ -1191,11 +1191,11 @@
         </item>
         <item>
         <title>类型萃取</title>
-        <link>https://zhichenf.github.io/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/</link>
+        <link>https://zhichenf.github.io/p/type_traits/</link>
         <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E7%B1%BB%E5%9E%8B%E8%90%83%E5%8F%96/15.jpg" alt="Featured image of post 类型萃取" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/type_traits/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/type_traits/15.jpg" alt="Featured image of post 类型萃取" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;在C++中，类型萃取（Type Traits）是一种在编译时获取和操作类型信息的机制。它通过模板元编程技术实现，允许开发者根据类型的特性进行条件编译或执行不同的代码路径。类型萃取类通常定义在&lt;code&gt;&amp;lt;type_traits&amp;gt;&lt;/code&gt;头文件中。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;常见类型萃取类&#34;&gt;常见类型萃取类
@@ -3731,11 +3731,11 @@
         </item>
         <item>
         <title>C&#43;&#43;异步编程工具 (二)</title>
-        <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%BA%8C/</link>
+        <link>https://zhichenf.github.io/p/shared_future/</link>
         <pubDate>Fri, 24 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%BA%8C/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%BA%8C/13.jpg" alt="Featured image of post C&#43;&#43;异步编程工具 (二)" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/shared_future/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/shared_future/13.jpg" alt="Featured image of post C&#43;&#43;异步编程工具 (二)" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;std::shared_future&lt;/code&gt; 是 C++ 标准库中的一个类，用于表示可以共享的异步计算结果。它与 &lt;code&gt;std::future&lt;/code&gt; 类似，但允许多个线程共享同一个异步结果，而 &lt;code&gt;std::future&lt;/code&gt; 只能被单个线程访问。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdshared_future&#34;&gt;std::shared_future
@@ -3856,11 +3856,11 @@
         </item>
         <item>
         <title>C&#43;&#43;异步编程工具 (一)</title>
-        <link>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%B8%80/</link>
+        <link>https://zhichenf.github.io/p/future_wait_for_event/</link>
         <pubDate>Thu, 23 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%B8%80/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/c-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E4%B8%80/9.jpg" alt="Featured image of post C&#43;&#43;异步编程工具 (一)" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/future_wait_for_event/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/future_wait_for_event/9.jpg" alt="Featured image of post C&#43;&#43;异步编程工具 (一)" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;std::async&lt;/code&gt;、&lt;code&gt;std::packaged_task&lt;/code&gt; 和 &lt;code&gt;std::promise&lt;/code&gt; 是C++11引入的三个用于异步编程的工具，它们都与 &lt;code&gt;std::future&lt;/code&gt; 配合使用，用于在多线程环境中执行任务并获取结果。本篇文中的工具都在&amp;lt;future&amp;gt;头文件中声明。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;stdfuture&#34;&gt;std::future
@@ -4360,11 +4360,11 @@
         </item>
         <item>
         <title>C&#43;&#43;11线程池</title>
-        <link>https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+        <link>https://zhichenf.github.io/p/c-11_thread_pool/</link>
         <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/c-11%E7%BA%BF%E7%A8%8B%E6%B1%A0/10.jpg" alt="Featured image of post C&#43;&#43;11线程池" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/c-11_thread_pool/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/c-11_thread_pool/10.jpg" alt="Featured image of post C&#43;&#43;11线程池" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;在C++11之前，标准库并不提供线程相关的支持（如&lt;code&gt;std::thread&lt;/code&gt;、&lt;code&gt;std::mutex&lt;/code&gt;等），因此在C++11之前创建线程池需要依赖于操作系统的线程库或第三方库，如 &lt;strong&gt;POSIX线程（pthread）&lt;/strong&gt; 或 &lt;strong&gt;Boost.Thread&lt;/strong&gt;。而在c++11之后，我们可以使用c++的标准库来实现线程池，从而写出跨平台的线程池。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;线程池简介&#34;&gt;线程池简介

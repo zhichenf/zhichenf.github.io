@@ -9,11 +9,11 @@
         <copyright>YC奕晨</copyright>
         <lastBuildDate>Mon, 10 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://zhichenf.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>奇异模板</title>
-        <link>https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/</link>
+        <link>https://zhichenf.github.io/p/curiously_recurring_templage_pattern/</link>
         <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E5%A5%87%E5%BC%82%E6%A8%A1%E6%9D%BF/25.jpg" alt="Featured image of post 奇异模板" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/curiously_recurring_templage_pattern/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/curiously_recurring_templage_pattern/25.jpg" alt="Featured image of post 奇异模板" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;奇异递归模板模式（Curiously Recurring Template Pattern，简称 CRTP），也被称为奇异模板，是 C++ 中的一种模板编程技术。它允许基类使用派生类的类型信息，实现了一种编译时多态。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;奇异递归模板模式&#34;&gt;奇异递归模板模式
@@ -338,11 +338,11 @@
         </item>
         <item>
         <title>观察者模式</title>
-        <link>https://zhichenf.github.io/p/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+        <link>https://zhichenf.github.io/p/observer_pattern/</link>
         <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/19.jpg" alt="Featured image of post 观察者模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/observer_pattern/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/observer_pattern/19.jpg" alt="Featured image of post 观察者模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;观察者模式（Observer Pattern）是一种行为设计模式，它定义了对象之间的一对多依赖关系，使得当一个对象的状态发生改变时，所有依赖于它的对象都会自动收到通知并更新。这种模式通常用于实现事件处理系统、发布-订阅模型等。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;观察者模式&#34;&gt;观察者模式
@@ -622,11 +622,11 @@
         </item>
         <item>
         <title>模板方法和策略模式</title>
-        <link>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+        <link>https://zhichenf.github.io/p/template_method_and_strategy/</link>
         <pubDate>Thu, 06 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95and%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/24.jpg" alt="Featured image of post 模板方法和策略模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/template_method_and_strategy/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/template_method_and_strategy/24.jpg" alt="Featured image of post 模板方法和策略模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;模板方法模式&lt;/strong&gt;和&lt;strong&gt;策略模式&lt;/strong&gt;都是行为设计模式，它们的目标都是通过封装算法来提高代码的灵活性和可维护性。然而，它们的实现方式和适用场景有所不同。下面就会介绍这两种设计模式&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;模板方法模式&#34;&gt;模板方法模式
@@ -1003,11 +1003,11 @@
         </item>
         <item>
         <title>单例模式</title>
-        <link>https://zhichenf.github.io/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+        <link>https://zhichenf.github.io/p/singleton_pattern/</link>
         <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://zhichenf.github.io/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
-        <description>&lt;img src="https://zhichenf.github.io/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/18.jpg" alt="Featured image of post 单例模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
+        <guid>https://zhichenf.github.io/p/singleton_pattern/</guid>
+        <description>&lt;img src="https://zhichenf.github.io/p/singleton_pattern/18.jpg" alt="Featured image of post 单例模式" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;单例设计模式（Singleton Design Pattern）是一种创建型设计模式，它确保一个类只有一个实例，并提供一个全局访问点来获取该实例。这种模式常用于需要控制资源访问、配置管理或共享资源等场景。&lt;/p&gt;
 &lt;p&gt;本文主要介绍单例设计模式的两种实现方式及其特点。&lt;/p&gt;&lt;/blockquote&gt;
