@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://zhichenf.github.io/p/xv6-syscall/'>
 
-<link rel="stylesheet" href="/scss/style.min.8d934ad4bc016d1815207ceb7e43fb3eb6fedac5e3d051f641d6ce55cf579125.css"><meta property='og:title' content="mit6.1810 fall 2024 project2">
+<link rel="stylesheet" href="/scss/style.min.c9e2afea8d691a3ea2865c0ca12195104da2d5006a0c15fc7799b19a9c242ad1.css"><meta property='og:title' content="mit6.1810 fall 2024 project2">
 <meta property='og:description' content="mit6.1810 2024 fall project2">
 <meta property='og:url' content='https://zhichenf.github.io/p/xv6-syscall/'>
 <meta property='og:site_name' content='奕晨&#39;s blog'>
@@ -1531,13 +1531,20 @@ sd t0, 112(a0)</p>
 <li>子进程结束，父进程wait，依次释放trapframe页面(1页),用户页面(4 + 32页)，页表页面(5页)</li>
 <li>此时空闲链表如下所示
 <ul>
-<li>（头，旧的页表页面5页）-&gt; (用户页面32页，secret在第22页上) -&gt; 用户页面(4页，elf的load,用户栈，guard) -&gt; (trapframe) -&gt; &hellip;&hellip;.</li>
+<li>（头，旧的页表页面5页）-&gt; (用户页面32页，secret在第23页上) -&gt; 用户页面(4页，elf的load,用户栈，guard) -&gt; (trapframe) -&gt; &hellip;&hellip;.</li>
+<li><mark>secret在空闲链表从头开始数第28个页面上</mark></li>
+</ul>
+</li>
+<li>执行pipe(fds)
+<ul>
+<li>追踪pipe系统调用的执行流程kernel/sysfile.c中的uint64 sys_pipe(void)函数，我们可以发现pipe执行了pipealloc函数</li>
+<li>pipealloc中执行了kalloc，又申请了一个页面。</li>
 <li><mark>secret在空闲链表从头开始数第27个页面上</mark></li>
 </ul>
 </li>
 <li>fork为子进程分配空间，和上面一样，总共10个页面</li>
 <li>exec(attack)分配空间，和上面一样，到guard页申请结束总共申请了9个</li>
-<li>释放fork中的9个页面</li>
+<li>释放fork中的9个页面,与上面申请的9个页面相抵消</li>
 <li>27-10 = 17，因此再分配17个页面就可以找到secret</li>
 </ul>
 </li>
